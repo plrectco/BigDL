@@ -72,6 +72,10 @@ class MaskedSelect[T: ClassTag]
     this
   }
 
+  override def getBufferArray(): Array[Array[Tensor[T]]] = {
+    Array(Array(maskIndices, maskIndexBuffer, gradBuffer, gradMask))
+  }
+
   override def toString(): String = {
     s"nn.MaskedSelect"
   }

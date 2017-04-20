@@ -157,6 +157,17 @@ abstract class Container[A <: Activity : ClassTag,
     this
   }
 
+  override def getBufferArray(): Array[Array[Tensor[T]]] = {
+    var buffers = new ArrayBuffer[Array[Tensor[T]]]()
+    modules.foreach(m => {
+      val subBuffer = m.getBufferArray()
+      if (subBuffer != null) {
+        buffers ++= subBuffer
+      }
+    })
+    buffers.toArray
+  }
+
   override def canEqual(other: Any): Boolean = other.isInstanceOf[Container[A, B, T]]
 
   override def equals(other: Any): Boolean = other match {

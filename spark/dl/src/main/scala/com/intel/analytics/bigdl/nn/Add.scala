@@ -92,6 +92,10 @@ class Add[T: ClassTag](val inputSize: Int
     this
   }
 
+  override def getBufferArray(): Array[Array[Tensor[T]]] = {
+    Array(Array(ones))
+  }
+
   override def parameters(): (Array[Tensor[T]], Array[Tensor[T]]) = {
     (Array(this.bias), Array(this.gradBias))
   }

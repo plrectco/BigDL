@@ -353,6 +353,10 @@ class RoiPooling[T: ClassTag](val pooledW: Int, val pooledH: Int, val spatialSca
     gradInputTensor.set()
     this
   }
+
+  override def getBufferArray(): Array[Array[Tensor[T]]] = {
+    Array(Array(argmax, gradInputTensor))
+  }
 }
 
 object RoiPooling {

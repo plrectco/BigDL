@@ -153,6 +153,10 @@ class Euclidean[T: ClassTag](val inputSize: Int, val outputSize: Int,
     this
   }
 
+  override def getBufferArray(): Array[Array[Tensor[T]]] = {
+    Array(Array(repeatBuffer, divBuffer, sumBuffer))
+  }
+
   override def parameters(): (Array[Tensor[T]], Array[Tensor[T]]) = {
     (Array(this.weight), Array(this.gradWeight))
   }

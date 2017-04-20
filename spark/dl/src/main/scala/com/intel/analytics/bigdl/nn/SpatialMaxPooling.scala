@@ -284,6 +284,10 @@ class SpatialMaxPooling[T: ClassTag](
     indices.set()
     this
   }
+
+  override def getBufferArray(): Array[Array[Tensor[T]]] = {
+    Array(Array(indices))
+  }
 }
 
 object SpatialMaxPooling {

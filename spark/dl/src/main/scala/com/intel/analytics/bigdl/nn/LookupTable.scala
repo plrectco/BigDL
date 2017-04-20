@@ -236,6 +236,10 @@ class LookupTable[T: ClassTag]
     this
   }
 
+  override def getBufferArray(): Array[Array[Tensor[T]]] = {
+    Array(Array(countBuffer))
+  }
+
   override def canEqual(other: Any): Boolean = other.isInstanceOf[LookupTable[T]]
 
   override def equals(other: Any): Boolean = other match {

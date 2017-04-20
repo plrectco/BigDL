@@ -153,6 +153,10 @@ class Linear[T: ClassTag](
     this
   }
 
+  override def getBufferArray(): Array[Array[Tensor[T]]] = {
+    Array(Array(addBuffer))
+  }
+
   override def parameters(): (Array[Tensor[T]], Array[Tensor[T]]) = {
     if (null == bias) {
       (Array(this.weight), Array(this.gradWeight))

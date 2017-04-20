@@ -191,6 +191,10 @@ class MixtureTable[T: ClassTag](var dim: Int = Int.MaxValue)
     this
   }
 
+  override def getBufferArray(): Array[Array[Tensor[T]]] = {
+    Array(Array(expert))
+  }
+
   override def toString(): String = {
     s"nn.MixtureTable($dim)"
   }

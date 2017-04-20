@@ -167,6 +167,10 @@ class CMul[@specialized(Float, Double) T: ClassTag](
     this
   }
 
+  override def getBufferArray(): Array[Array[Tensor[T]]] = {
+    Array(Array(_repeat, _sum))
+  }
+
   override def equals(obj: Any): Boolean = {
     if (!super.equals(obj)) {
       return false

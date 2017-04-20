@@ -406,6 +406,10 @@ class SpatialConvolution[T: ClassTag](
     this
   }
 
+  override def getBufferArray(): Array[Array[Tensor[T]]] = {
+    Array(Array(ones, onesBatch, onesBias, gradientBiasMT))
+  }
+
   override def toString(): String = {
     s"nn.SpatialConvolution($nInputPlane -> $nOutputPlane, $kernelW x" +
       s" $kernelH, $strideW, $strideH, $padW, $padH)"
