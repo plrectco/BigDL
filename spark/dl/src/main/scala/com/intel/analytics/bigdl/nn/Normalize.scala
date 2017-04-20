@@ -138,6 +138,10 @@ class Normalize[T: ClassTag](val p: Double, val eps: Double = 1e-10)
     this
   }
 
+  override def getBufferArray(): Array[Array[Tensor[T]]] = {
+    Array(Array(norm, normp, buffer, buffer2, cross, indices))
+  }
+
   override def canEqual(other: Any): Boolean = other.isInstanceOf[Normalize[T]]
 
   override def equals(other: Any): Boolean = other match {

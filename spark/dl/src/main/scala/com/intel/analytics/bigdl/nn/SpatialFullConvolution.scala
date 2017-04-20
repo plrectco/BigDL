@@ -712,7 +712,7 @@ class SpatialFullConvolution[A <: Activity : ClassTag, T: ClassTag](
   }
 
   override def getBufferArray(): Array[Array[Tensor[T]]] = {
-    Array(Array(columns, ones, zeroScalar, onesBias, onesBatch))
+    Array(Array(columns, ones, zeroScalar, onesBias, onesBatch, gradientBiasMT, gradWeightMMInBatch))
   }
 
   override def equals(obj: Any): Boolean = {
