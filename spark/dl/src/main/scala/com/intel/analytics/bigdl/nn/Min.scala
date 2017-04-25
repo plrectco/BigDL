@@ -102,10 +102,6 @@ class Min[T: ClassTag](
     indices.set()
     this
   }
-
-  override def getBufferArray(): Array[Array[Tensor[T]]] = {
-    Array(Array(values, indices))
-  }
 }
 
 object Min {

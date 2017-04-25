@@ -217,6 +217,10 @@ class SpatialDivisiveNormalization[T: ClassTag](
     localstds = null
     this
   }
+
+  override def getBufferArray(): Array[Array[Tensor[T]]] = {
+    Array(Array(ones))
+  }
 }
 
 object SpatialDivisiveNormalization {

@@ -98,25 +98,26 @@ abstract class AbstractModule[A <: Activity: ClassTag, B <: Activity: ClassTag,
 
   def getBufferArray(): Array[Array[Tensor[T]]] = null
 
-  def shareMem(): Unit = {
+  def shareMem(): this.type = {
     val buffers = getBufferArray()
     val bufferLength = buffers.length
     var maxLength = 0
-    var maxIndex = 0
+
     for (i <- 0 to bufferLength - 1) {
       val curLength = buffers(i).length
       if (curLength > maxLength) {
         maxLength = curLength
-        maxIndex = i
       }
     }
-    val maxLengthArray = buffers(maxIndex)
+    val shareBuffers = Array.fill[Tensor[T]](maxLength)(Tensor(1))
     buffers.foreach(m => {
       val mLength = m.length
-      for (i <- 0 to mLength - 1) {
-        m(i) = maxLengthArray(i)
+      for (i <- 0 to (mLength - 1)) {
+        m(i).set(shareBuffers(i).storage())
       }
     })
+
+    this
   }
 
   private[nn] def allocateAs(dest: Activity): Activity = dest match {

@@ -189,10 +189,6 @@ class TimeDistributed[T : ClassTag] (layer: TensorModule[T])
     this
   }
 
-  override def getBufferArray(): Array[Array[Tensor[T]]] = {
-    Array(Array(fInput, fGradOutput))
-  }
-
   override def toString(): String = {
     val str = "nn.TimeDistributed"
     str
