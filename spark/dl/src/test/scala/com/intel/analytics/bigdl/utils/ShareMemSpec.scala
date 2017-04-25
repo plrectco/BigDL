@@ -24,7 +24,7 @@ import org.scalatest.{FlatSpec, Matchers}
 
 import scala.reflect.ClassTag
 
-class ShareMemSpec extends FlatSpec with Matchers{
+class ShareMemSpec extends FlatSpec with Matchers {
   def getFooModel[T: ClassTag]()(implicit ev: TensorNumeric[T]): Module[T] = {
     val feat1 = Sequential[T]()
     val feat2 = Sequential()
@@ -69,11 +69,8 @@ class ShareMemSpec extends FlatSpec with Matchers{
   //    s.add(LookupTable[T](1, 2))
 
 
-
-
-
   "ShareMemSpec" should "works fine" in {
-//    val  input = Tensor[Double](4, 3, 6, 6).fill(0.5)
+    //    val  input = Tensor[Double](4, 3, 6, 6).fill(0.5)
     val input = T(Tensor[Double](4, 3, 6, 6).fill(0.5), Tensor[Double](4, 3, 6, 6).fill(1))
     val model = getFooModel[Double]()
     val model2 = model.cloneModule()
