@@ -23,14 +23,9 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import scala.math._
 
 @com.intel.analytics.bigdl.tags.Serial
-class MSECriterionSpec extends FlatSpec with BeforeAndAfter with Matchers {
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A MSE Criterion " should "generate correct output and grad" in {
+class MSECriterionSpec extends TorchSpec with BeforeAndAfter with Matchers {
+    "A MSE Criterion " should "generate correct output and grad" in {
+    torchCheck()
     val mse = new MSECriterion[Double]
     val input = Tensor[Double](2, 2, 2)
     input(Array(1, 1, 1)) = 0.17503996845335

@@ -21,16 +21,11 @@ import com.intel.analytics.bigdl.utils.RandomGenerator
 import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 @com.intel.analytics.bigdl.tags.Serial
-class GradientReversalSpec  extends FlatSpec with BeforeAndAfter with Matchers {
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  def randomn(): Double = RandomGenerator.RNG.normal(-10, 10)
+class GradientReversalSpec  extends TorchSpec with BeforeAndAfter with Matchers {
+    def randomn(): Double = RandomGenerator.RNG.normal(-10, 10)
 
   "An GradientReversal" should "generate correct output and grad" in {
+    torchCheck()
     val layer = new GradientReversal[Double]()
     val input = Tensor[Double](2, 2, 2)
     input.apply1(x => randomn())

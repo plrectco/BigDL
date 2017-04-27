@@ -24,14 +24,9 @@ import scala.collection.mutable.HashMap
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class SelectTableSpec extends FlatSpec with BeforeAndAfter with Matchers {
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A SelectTable selects a tensor as an output" should "generate correct output and grad" in {
+class SelectTableSpec extends TorchSpec with BeforeAndAfter with Matchers {
+    "A SelectTable selects a tensor as an output" should "generate correct output and grad" in {
+    torchCheck()
     val seed = 100
     Random.setSeed(seed)
 
@@ -84,6 +79,7 @@ class SelectTableSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "A SelectTable selects a table as an output" should "generate correct output and grad" in {
+    torchCheck()
     val seed = 100
     Random.setSeed(seed)
 

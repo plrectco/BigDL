@@ -23,14 +23,9 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import scala.math._
 
 @com.intel.analytics.bigdl.tags.Serial
-class TanhSpec extends FlatSpec with BeforeAndAfter with Matchers {
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A Tanh Module " should "generate correct output and grad" in {
+class TanhSpec extends TorchSpec with BeforeAndAfter with Matchers {
+    "A Tanh Module " should "generate correct output and grad" in {
+    torchCheck()
     val module = new Tanh[Double]()
     val input = Tensor[Double](2, 2, 2)
     input(Array(1, 1, 1)) = -0.17020166106522

@@ -24,14 +24,9 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class ParallelCriterionSpec extends FlatSpec with BeforeAndAfter with Matchers {
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A ParallelCriterion " should "generate correct output and grad" in {
+class ParallelCriterionSpec extends TorchSpec with BeforeAndAfter with Matchers {
+    "A ParallelCriterion " should "generate correct output and grad" in {
+    torchCheck()
     val seed = 100
     Random.setSeed(seed)
 

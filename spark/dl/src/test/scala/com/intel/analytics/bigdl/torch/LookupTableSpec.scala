@@ -21,14 +21,9 @@ import com.intel.analytics.bigdl.utils.RandomGenerator._
 import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 @com.intel.analytics.bigdl.tags.Serial
-class LookupTableSpec extends FlatSpec with BeforeAndAfter with Matchers {
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A LookupTableSpec" should "generate correct output and grad with input 1D" in {
+class LookupTableSpec extends TorchSpec with BeforeAndAfter with Matchers {
+    "A LookupTableSpec" should "generate correct output and grad with input 1D" in {
+    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
     val module = LookupTable[Double](9, 4, 2, 0.1, 2.0, true)
@@ -88,6 +83,7 @@ class LookupTableSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "A LookupTableSpec" should "generate correct output and grad with input 2D" in {
+    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
     val module = LookupTable[Double](10, 3, 3)
@@ -144,6 +140,7 @@ class LookupTableSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "A LookupTableSpec" should "generate correct output and grad with max-norm regularization" in {
+    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
     val module = LookupTable[Double](10, 3, 0, 0.1, 2)

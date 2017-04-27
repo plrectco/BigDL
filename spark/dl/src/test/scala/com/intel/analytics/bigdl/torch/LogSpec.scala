@@ -21,14 +21,9 @@ import com.intel.analytics.bigdl.utils.RandomGenerator
 import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 @com.intel.analytics.bigdl.tags.Serial
-class LogSpec extends FlatSpec with BeforeAndAfter with Matchers {
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A Log()" should "generate correct output and grad" in {
+class LogSpec extends TorchSpec with BeforeAndAfter with Matchers {
+    "A Log()" should "generate correct output and grad" in {
+    torchCheck()
     def randomn(): Double = RandomGenerator.RNG.uniform(2, 10)
     val layer = new Log[Double]()
     val input = Tensor[Double](2, 2, 2)

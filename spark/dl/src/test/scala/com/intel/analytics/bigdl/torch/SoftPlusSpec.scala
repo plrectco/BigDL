@@ -22,14 +22,9 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class SoftPlusSpec extends FlatSpec with BeforeAndAfter with Matchers {
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A SoftPlus 3D input" should "generate correct output and grad" in {
+class SoftPlusSpec extends TorchSpec with BeforeAndAfter with Matchers {
+    "A SoftPlus 3D input" should "generate correct output and grad" in {
+    torchCheck()
     val layer = new SoftPlus[Double]()
     val input = Tensor[Double](2, 3, 4).apply1(_ => Random.nextDouble())
     val gradOutput = Tensor[Double](2, 3, 4).apply1(_ => Random.nextDouble())
@@ -56,6 +51,7 @@ class SoftPlusSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "A SoftPlus 4D input" should "generate correct output and grad" in {
+    torchCheck()
     val layer = new SoftPlus[Double](2.0)
     val input = Tensor[Double](5, 4, 3, 2).apply1(_ => Random.nextDouble())
     val gradOutput = Tensor[Double](5, 4, 3, 2).apply1(_ => Random.nextDouble())

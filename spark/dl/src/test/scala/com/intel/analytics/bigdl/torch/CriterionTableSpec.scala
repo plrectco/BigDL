@@ -25,14 +25,9 @@ import scala.collection.mutable.HashMap
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class CriterionTableSpec extends FlatSpec with BeforeAndAfter with Matchers{
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A CriterionTable " should "generate correct output and grad" in {
+class CriterionTableSpec extends TorchSpec with BeforeAndAfter with Matchers{
+    "A CriterionTable " should "generate correct output and grad" in {
+    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 

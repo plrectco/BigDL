@@ -22,14 +22,9 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class MulConstantSpec extends FlatSpec with BeforeAndAfter with Matchers{
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A MulConstant Module " should "generate correct output and grad" in {
+class MulConstantSpec extends TorchSpec with BeforeAndAfter with Matchers{
+    "A MulConstant Module " should "generate correct output and grad" in {
+    torchCheck()
     val module = new MulConstant[Double](10)
     val input = Tensor[Double](1, 5).apply1(e => Random.nextDouble())
     val gradOutput = Tensor[Double](1, 5).apply1(e => Random.nextDouble())

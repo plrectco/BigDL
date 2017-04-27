@@ -26,14 +26,9 @@ import scala.util.Random
 import com.intel.analytics.bigdl._
 
 @com.intel.analytics.bigdl.tags.Serial
-class SpatialBatchNormalizationSpec extends FlatSpec with Matchers with BeforeAndAfter {
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A SpatialBatchNormalization" should "generate correct output and gradInput" in {
+class SpatialBatchNormalizationSpec extends TorchSpec with Matchers with BeforeAndAfter {
+    "A SpatialBatchNormalization" should "generate correct output and gradInput" in {
+    torchCheck()
 
     val seed = 100
     RNG.setSeed(seed)
@@ -120,6 +115,7 @@ class SpatialBatchNormalizationSpec extends FlatSpec with Matchers with BeforeAn
   }
 
   "A SpatialBatchNormalization evaluating" should "generate correct output" in {
+    torchCheck()
 
     val seed = 100
     RNG.setSeed(seed)

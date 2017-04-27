@@ -22,14 +22,9 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class L1PenaltySpec extends FlatSpec with BeforeAndAfter with Matchers{
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A L1Penalty" should "generate correct output and grad" in {
+class L1PenaltySpec extends TorchSpec with BeforeAndAfter with Matchers{
+    "A L1Penalty" should "generate correct output and grad" in {
+    torchCheck()
     val layer = new L1Penalty[Double](1, true)
     val input = Tensor[Double](2, 7).apply1(e => Random.nextDouble())
     val gradOutput = Tensor[Double](2, 7).apply1(e => Random.nextDouble())

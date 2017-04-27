@@ -23,14 +23,9 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class SqueezeSpec extends FlatSpec with BeforeAndAfter with Matchers {
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A Squeeze(2)" should "generate correct output and grad" in {
+class SqueezeSpec extends TorchSpec with BeforeAndAfter with Matchers {
+    "A Squeeze(2)" should "generate correct output and grad" in {
+    torchCheck()
     val layer = Squeeze[Double](2)
     val input = Tensor[Double](2, 1, 2).apply1(_ => Random.nextDouble())
     val gradOutput = Tensor[Double](2, 2).apply1(_ => Random.nextDouble())
@@ -57,6 +52,7 @@ class SqueezeSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "A Squeeze()" should "generate correct output and grad" in {
+    torchCheck()
     val layer = new Squeeze[Double]()
     val input = Tensor[Double](1, 1, 2, 2).apply1(_ => Random.nextDouble())
     val gradOutput = Tensor[Double](2, 2).apply1(_ => Random.nextDouble())
@@ -83,6 +79,7 @@ class SqueezeSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "A Squeeze(2, 2)" should "generate correct output and grad" in {
+    torchCheck()
     val layer = Squeeze[Double](2, 3)
     val input = Tensor[Double](1, 1, 2, 2).apply1(_ => Random.nextDouble())
     val gradOutput = Tensor[Double](2, 2).apply1(_ => Random.nextDouble())

@@ -21,14 +21,9 @@ import com.intel.analytics.bigdl.utils.RandomGenerator._
 import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 @com.intel.analytics.bigdl.tags.Serial
-class AddConstantSpec extends FlatSpec with BeforeAndAfter with Matchers{
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A Add Module " should "generate correct output and grad" in {
+class AddConstantSpec extends TorchSpec with BeforeAndAfter with Matchers{
+    "A Add Module " should "generate correct output and grad" in {
+    torchCheck()
     val inputN = 5
     val seed = 100
     RNG.setSeed(seed)

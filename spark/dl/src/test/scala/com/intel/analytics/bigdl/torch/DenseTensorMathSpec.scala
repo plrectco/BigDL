@@ -22,15 +22,10 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import scala.sys.process._
 
 @com.intel.analytics.bigdl.tags.Serial
-class DenseTensorMathSpec extends FlatSpec with BeforeAndAfter with Matchers {
+class DenseTensorMathSpec extends TorchSpec with BeforeAndAfter with Matchers {
 
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "matrix + real" should "return correct value" in {
+    "matrix + real" should "return correct value" in {
+    torchCheck()
     val a = Tensor[Double](200, 200).rand()
     val b = 100
     val code = "b = 100\noutcome = a + b"
@@ -52,6 +47,7 @@ class DenseTensorMathSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "matrix + matrix" should "return correct value" in {
+    torchCheck()
     val a = Tensor[Double](200, 200).rand()
     val b = Tensor[Double](200, 200).rand()
     val code = "outcome = a + b"
@@ -73,6 +69,7 @@ class DenseTensorMathSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "matrix - real" should "return correct value" in {
+    torchCheck()
     val a = Tensor[Double](200, 200).rand()
     val b = 100
     val code = "b = 100\noutcome = a - b"
@@ -94,6 +91,7 @@ class DenseTensorMathSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "matrix - matrix" should "return correct value" in {
+    torchCheck()
     val a = Tensor[Double](200, 200).rand()
     val b = Tensor[Double](200, 200).rand()
     val code = "outcome = a - b"
@@ -115,6 +113,7 @@ class DenseTensorMathSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "negative matrix" should "return correct value" in {
+    torchCheck()
     val a = Tensor[Double](200, 200).rand()
     val code = "outcome = -a"
 
@@ -135,6 +134,7 @@ class DenseTensorMathSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "matrix / real" should "return correct value" in {
+    torchCheck()
     val a = Tensor[Double](200, 200).rand()
     val b = 100
     val code = "b = 100\noutcome = a / b"
@@ -156,6 +156,7 @@ class DenseTensorMathSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "matrix ./ matrix" should "return correct value" in {
+    torchCheck()
     val a = Tensor[Double](200, 200).rand()
     val b = Tensor[Double](200, 200).rand()
     val code = "outcome = a:cdiv(b)"
@@ -177,6 +178,7 @@ class DenseTensorMathSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "matrix * real" should "return correct value" in {
+    torchCheck()
     val a = Tensor[Double](200, 200).rand()
     val b = 100
     val code = "b = 100\noutcome = a * b"
@@ -199,6 +201,7 @@ class DenseTensorMathSpec extends FlatSpec with BeforeAndAfter with Matchers {
 
 
   "matrix * matrix" should "return correct value" in {
+    torchCheck()
     val a = Tensor[Double](200, 200).rand()
     val b = Tensor[Double](200, 200).rand()
     val code = "outcome = a * b"
@@ -220,6 +223,7 @@ class DenseTensorMathSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "matrix sumAll" should "return correct value" in {
+    torchCheck()
     val a = Tensor[Double](200, 200).rand()
     val code = "outcome = a:sum()"
 
@@ -240,6 +244,7 @@ class DenseTensorMathSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "matrix sumDimension" should "return correct value" in {
+    torchCheck()
     val a = Tensor[Double](200, 200).rand()
     val code = "outcome = a:sum(1)"
 
@@ -260,6 +265,7 @@ class DenseTensorMathSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "matrix max" should "return correct value" in {
+    torchCheck()
     val a = Tensor[Double](200, 200).rand()
     val code = "outcome = a:max()"
 
@@ -280,6 +286,7 @@ class DenseTensorMathSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "matrix conv2" should "return correct value" in {
+    torchCheck()
     val a = Tensor[Double](200, 200).rand()
     val b = Tensor[Double](200, 200).rand()
     val code = "outcome = torch.conv2(a, b, 'V')"
@@ -301,6 +308,7 @@ class DenseTensorMathSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "matrix xcorr2" should "return correct value" in {
+    torchCheck()
     val a = Tensor[Double](200, 200).rand()
     val b = Tensor[Double](200, 200).rand()
     val code = "outcome = torch.xcorr2(a, b, 'V')"
@@ -322,6 +330,7 @@ class DenseTensorMathSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "matrix add" should "return correct value" in {
+    torchCheck()
     val a = Tensor[Double](200, 200).rand()
     val b = Tensor[Double](200, 200).rand()
     val m = 20
@@ -343,6 +352,7 @@ class DenseTensorMathSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "matrix cmul" should "return correct value" in {
+    torchCheck()
     val a = Tensor[Double](200, 200).rand()
     val b = Tensor[Double](200, 200).rand()
     val code = "outcome = a:cmul(b)"
@@ -363,6 +373,7 @@ class DenseTensorMathSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "matrix mul" should "return correct value" in {
+    torchCheck()
     val a = Tensor[Double](200, 200).rand()
     val b = Tensor[Double](200, 200).rand()
     val m = 20
@@ -385,6 +396,7 @@ class DenseTensorMathSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "matrix div" should "return correct value" in {
+    torchCheck()
     val a = Tensor[Double](200, 200).rand()
     val b = 20
     val code = "b = 20\noutcome = a:div(b)"
@@ -406,6 +418,7 @@ class DenseTensorMathSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "addmm" should "return correct value" in {
+    torchCheck()
 
     val a = Tensor[Double](200, 200).rand()
     val b = Tensor[Double](200, 200).rand()
@@ -432,6 +445,7 @@ class DenseTensorMathSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "addr" should "return correct value" in {
+    torchCheck()
 
     val a = Tensor[Double](200).rand()
     val b = Tensor[Double](200).rand()

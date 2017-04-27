@@ -25,14 +25,9 @@ import scala.collection.mutable.HashMap
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class CMulTableSpec extends FlatSpec with BeforeAndAfter with Matchers {
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A CMulTable Module" should "generate correct output and grad" in {
+class CMulTableSpec extends TorchSpec with BeforeAndAfter with Matchers {
+    "A CMulTable Module" should "generate correct output and grad" in {
+    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
     val module = new CMulTable[Double]()

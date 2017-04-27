@@ -23,14 +23,9 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import scala.math._
 
 @com.intel.analytics.bigdl.tags.Serial
-class ModuleSpec extends FlatSpec with BeforeAndAfter with Matchers {
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "getParameter" should "behave correctly" in {
+class ModuleSpec extends TorchSpec with BeforeAndAfter with Matchers {
+    "getParameter" should "behave correctly" in {
+    torchCheck()
     val module = new Sequential[Double]
     val subModule1 = new Linear[Double](2, 3)
     val subModule2 = new Linear[Double](4, 5)

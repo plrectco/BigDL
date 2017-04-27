@@ -23,15 +23,10 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class MulSpec extends FlatSpec with BeforeAndAfter with Matchers{
+class MulSpec extends TorchSpec with BeforeAndAfter with Matchers{
 
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A Mul Module " should "generate correct output and grad" in {
+    "A Mul Module " should "generate correct output and grad" in {
+    torchCheck()
     val inputN = 5
     val seed = 100
     RNG.setSeed(seed)

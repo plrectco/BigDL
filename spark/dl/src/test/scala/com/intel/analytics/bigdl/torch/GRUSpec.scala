@@ -29,7 +29,7 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import scala.sys.process._
 
 @com.intel.analytics.bigdl.tags.Serial
-class GRUSpec  extends FlatSpec with BeforeAndAfter with Matchers {
+class GRUSpec  extends TorchSpec with BeforeAndAfter with Matchers {
   System.setProperty("bigdl.disableCheckSysEnv", "true")
   Engine.init(1, 1, true)
   before {
@@ -49,6 +49,7 @@ class GRUSpec  extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "A GRU " should "has same loss as torch rnn" in {
+    torchCheck()
 
     val hiddenSize = 4
     val inputSize = 5
@@ -216,6 +217,7 @@ class GRUSpec  extends FlatSpec with BeforeAndAfter with Matchers {
 
 
   "A GRU " should "converge" in {
+    torchCheck()
 
     val hiddenSize = 4
     val inputSize = 5
@@ -279,6 +281,7 @@ class GRUSpec  extends FlatSpec with BeforeAndAfter with Matchers {
 
 
   "A GRU " should "has same loss as torch rnn in batch mode" in {
+    torchCheck()
 
     val hiddenSize = 4
     val inputSize = 5
@@ -436,6 +439,7 @@ class GRUSpec  extends FlatSpec with BeforeAndAfter with Matchers {
 
 
   "A GRU " should "converge in batch mode" in {
+    torchCheck()
 
     val hiddenSize = 4
     val inputSize = 5
@@ -500,6 +504,7 @@ class GRUSpec  extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "A GRU " should "perform correct gradient check" in {
+    torchCheck()
 
     val hiddenSize = 4
     val inputSize = 5

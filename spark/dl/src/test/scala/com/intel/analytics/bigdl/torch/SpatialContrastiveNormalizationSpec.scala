@@ -24,14 +24,9 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class SpatialContrastiveNormalizationSpec extends FlatSpec with BeforeAndAfter with Matchers {
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A SpatialContrastiveNormalization 3D input" should "generate correct output and grad" in {
+class SpatialContrastiveNormalizationSpec extends TorchSpec with BeforeAndAfter with Matchers {
+    "A SpatialContrastiveNormalization 3D input" should "generate correct output and grad" in {
+    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 
@@ -69,6 +64,7 @@ class SpatialContrastiveNormalizationSpec extends FlatSpec with BeforeAndAfter w
   }
 
   "A SpatialContrastiveNormalization" should "generate correct output and grad" in {
+    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 
@@ -106,6 +102,7 @@ class SpatialContrastiveNormalizationSpec extends FlatSpec with BeforeAndAfter w
   }
 
   "A SpatialContrastiveNormalization(4)" should "generate correct output and grad" in {
+    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 
@@ -143,6 +140,7 @@ class SpatialContrastiveNormalizationSpec extends FlatSpec with BeforeAndAfter w
   }
 
   "A SpatialContrastiveNormalization(4, kernel)" should "generate correct output and grad" in {
+    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 

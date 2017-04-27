@@ -24,14 +24,9 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class BottleSpec extends FlatSpec with BeforeAndAfter with Matchers{
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A Bottle Container" should "generate correct output and grad" in {
+class BottleSpec extends TorchSpec with BeforeAndAfter with Matchers{
+    "A Bottle Container" should "generate correct output and grad" in {
+    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
     val module = new Bottle[Double](new Linear[Double](10, 2), 2, 2)

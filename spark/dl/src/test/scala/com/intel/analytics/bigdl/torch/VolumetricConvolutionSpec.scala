@@ -25,14 +25,9 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class VolumetricConvolutionSpec extends FlatSpec with BeforeAndAfter with Matchers {
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A VolumetricConvolution" should "generate correct output" in {
+class VolumetricConvolutionSpec extends TorchSpec with BeforeAndAfter with Matchers {
+    "A VolumetricConvolution" should "generate correct output" in {
+    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
     val from = RNG.uniform(2, 4).toInt
@@ -83,6 +78,7 @@ class VolumetricConvolutionSpec extends FlatSpec with BeforeAndAfter with Matche
   }
 
   "A VolumetricConvolution without bias" should "generate correct output" in {
+    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
     val from = RNG.uniform(2, 4).toInt
@@ -134,6 +130,7 @@ class VolumetricConvolutionSpec extends FlatSpec with BeforeAndAfter with Matche
 
 
   "A VolumetricConvolution with batch input" should "generate correct output" in {
+    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
     val from = RNG.uniform(2, 10).toInt
@@ -185,6 +182,7 @@ class VolumetricConvolutionSpec extends FlatSpec with BeforeAndAfter with Matche
   }
 
   "A VolumetricConvolution with batch input no bias" should "generate correct output" in {
+    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
     val from = RNG.uniform(2, 10).toInt
@@ -236,6 +234,7 @@ class VolumetricConvolutionSpec extends FlatSpec with BeforeAndAfter with Matche
   }
 
   "A VolumetricConvolution" should "be good in gradient check for input" in {
+    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
     val from = RNG.uniform(2, 4).toInt
@@ -265,6 +264,7 @@ class VolumetricConvolutionSpec extends FlatSpec with BeforeAndAfter with Matche
   }
 
   "A VolumetricConvolution with batch" should "be good in gradient check for input" in {
+    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
     val from = RNG.uniform(2, 6).toInt
@@ -295,6 +295,7 @@ class VolumetricConvolutionSpec extends FlatSpec with BeforeAndAfter with Matche
   }
 
   "A VolumetricConvolution" should "be good in gradient check for weight" in {
+    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
     val from = RNG.uniform(2, 4).toInt
@@ -324,6 +325,7 @@ class VolumetricConvolutionSpec extends FlatSpec with BeforeAndAfter with Matche
   }
 
   "A VolumetricConvolution with batch" should "be good in gradient check for weight" in {
+    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
     val from = RNG.uniform(2, 6).toInt

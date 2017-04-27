@@ -23,14 +23,9 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import scala.math._
 
 @com.intel.analytics.bigdl.tags.Serial
-class ReLU6Spec extends FlatSpec with BeforeAndAfter with Matchers {
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A ReLU6 Module " should "generate correct output and grad not inplace" in {
+class ReLU6Spec extends TorchSpec with BeforeAndAfter with Matchers {
+    "A ReLU6 Module " should "generate correct output and grad not inplace" in {
+    torchCheck()
     val module = new ReLU6[Double]()
     val input = Tensor[Double](2, 2, 2)
     input(Array(1, 1, 1)) = -0.97008799016476
@@ -79,6 +74,7 @@ class ReLU6Spec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "A ReLU6 Module " should "generate correct output and grad inplace" in {
+    torchCheck()
     val module = new ReLU6[Double](true)
     val input = Tensor[Double](2, 2, 2)
     input(Array(1, 1, 1)) = -0.97008799016476

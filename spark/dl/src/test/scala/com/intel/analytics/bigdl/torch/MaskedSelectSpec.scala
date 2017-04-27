@@ -24,14 +24,9 @@ import scala.collection.mutable.HashMap
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class MaskedSelectSpec extends FlatSpec with BeforeAndAfter with Matchers{
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A MaskedSelect Module " should "generate correct output and grad" in {
+class MaskedSelectSpec extends TorchSpec with BeforeAndAfter with Matchers{
+    "A MaskedSelect Module " should "generate correct output and grad" in {
+    torchCheck()
     val module = new MaskedSelect[Double]()
     val input1 = Tensor[Double](2, 2).apply1(e => Random.nextDouble())
     val input2 = Tensor[Double](2, 2)

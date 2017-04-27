@@ -23,14 +23,9 @@ import scala.math._
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class PReLUSpec extends FlatSpec with BeforeAndAfter with Matchers {
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A PReLU Module " should "generate correct output and grad not inplace" in {
+class PReLUSpec extends TorchSpec with BeforeAndAfter with Matchers {
+    "A PReLU Module " should "generate correct output and grad not inplace" in {
+    torchCheck()
     val module = new PReLU[Double]()
     val input = Tensor[Double](2, 3, 4).apply1(_ => Random.nextDouble() - 0.5)
     val gradOutput = Tensor[Double](2, 3, 4).apply1(_ => Random.nextDouble())
@@ -61,6 +56,7 @@ class PReLUSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "A PReLU(2)" should "generate correct output and grad not inplace" in {
+    torchCheck()
     val module = new PReLU[Double](2)
     val input = Tensor[Double](2, 3, 4).apply1(_ => Random.nextDouble() - 0.5)
     val gradOutput = Tensor[Double](2, 3, 4).apply1(_ => Random.nextDouble())

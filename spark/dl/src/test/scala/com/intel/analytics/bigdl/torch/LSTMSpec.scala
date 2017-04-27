@@ -29,7 +29,7 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import scala.sys.process._
 
 @com.intel.analytics.bigdl.tags.Serial
-class LSTMSpec  extends FlatSpec with BeforeAndAfter with Matchers {
+class LSTMSpec  extends TorchSpec with BeforeAndAfter with Matchers {
   before {
     if (!TH.hasTorch()) {
       cancel("Torch is not installed")
@@ -47,6 +47,7 @@ class LSTMSpec  extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "A LSTM " should "has same loss as torch rnn" in {
+    torchCheck()
 
     val hiddenSize = 4
     val inputSize = 6
@@ -214,6 +215,7 @@ class LSTMSpec  extends FlatSpec with BeforeAndAfter with Matchers {
 
 
   "A LSTM " should "has same loss as torch rnn in batch mode" in {
+    torchCheck()
 
     val hiddenSize = 4
     val inputSize = 6
@@ -368,6 +370,7 @@ class LSTMSpec  extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "A LSTM " should "converge" in {
+    torchCheck()
 
     val hiddenSize = 4
     val inputSize = 6
@@ -429,6 +432,7 @@ class LSTMSpec  extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "A LSTM " should "converge in batch mode" in {
+    torchCheck()
 
     val hiddenSize = 4
     val inputSize = 6

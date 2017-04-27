@@ -25,14 +25,9 @@ import scala.collection.mutable.HashMap
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class CosineDistanceSpec extends FlatSpec with BeforeAndAfter with Matchers{
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A CosineDistance " should "generate correct output and grad" in {
+class CosineDistanceSpec extends TorchSpec with BeforeAndAfter with Matchers{
+    "A CosineDistance " should "generate correct output and grad" in {
+    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 

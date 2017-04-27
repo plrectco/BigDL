@@ -21,14 +21,9 @@ import com.intel.analytics.bigdl.tensor.Tensor
 import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 @com.intel.analytics.bigdl.tags.Serial
-class ExpSpec extends FlatSpec with BeforeAndAfter with Matchers {
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "An Exp" should "generate correct output and grad" in {
+class ExpSpec extends TorchSpec with BeforeAndAfter with Matchers {
+    "An Exp" should "generate correct output and grad" in {
+    torchCheck()
     val layer = new Exp[Double]()
     val input = Tensor[Double](2, 2, 2)
     input(Array(1, 1, 1)) = 1

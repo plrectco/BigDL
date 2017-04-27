@@ -24,14 +24,9 @@ import com.intel.analytics.bigdl.utils.RandomGenerator._
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class SpatialConvolutionMapSpec extends FlatSpec with BeforeAndAfter with Matchers {
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A SpatialConvolution" should "generate correct output" in {
+class SpatialConvolutionMapSpec extends TorchSpec with BeforeAndAfter with Matchers {
+    "A SpatialConvolution" should "generate correct output" in {
+    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 
@@ -69,6 +64,7 @@ class SpatialConvolutionMapSpec extends FlatSpec with BeforeAndAfter with Matche
   }
 
   "A SpatialConvolution 3D input" should "generate correct output" in {
+    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 

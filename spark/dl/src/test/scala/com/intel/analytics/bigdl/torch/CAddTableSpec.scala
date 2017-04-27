@@ -24,14 +24,9 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class CAddTableSpec extends FlatSpec with BeforeAndAfter with Matchers {
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "CAddTable with ConcatTable" should "return right output" in {
+class CAddTableSpec extends TorchSpec with BeforeAndAfter with Matchers {
+    "CAddTable with ConcatTable" should "return right output" in {
+    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 
@@ -67,6 +62,7 @@ class CAddTableSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "CAddTable inplace with ConcatTable" should "return right output" in {
+    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 

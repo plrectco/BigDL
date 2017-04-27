@@ -23,14 +23,9 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class SplitTableSpec extends FlatSpec with BeforeAndAfter with Matchers {
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A SplitTable selects a tensor as an output" should "generate correct output and grad" in {
+class SplitTableSpec extends TorchSpec with BeforeAndAfter with Matchers {
+    "A SplitTable selects a tensor as an output" should "generate correct output and grad" in {
+    torchCheck()
     val seed = 100
     Random.setSeed(seed)
 

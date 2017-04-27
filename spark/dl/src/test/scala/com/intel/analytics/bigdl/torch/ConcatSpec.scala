@@ -25,14 +25,9 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import scala.math._
 
 @com.intel.analytics.bigdl.tags.Serial
-class ConcatSpec extends FlatSpec with BeforeAndAfter with Matchers {
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A Concat Container with Linear" should "generate correct output and grad " in {
+class ConcatSpec extends TorchSpec with BeforeAndAfter with Matchers {
+    "A Concat Container with Linear" should "generate correct output and grad " in {
+    torchCheck()
     val seed = 2
     RNG.setSeed(seed)
     val module = new Concat[Double](2)
@@ -94,6 +89,7 @@ class ConcatSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "A Concat Container" should "generate correct output and grad" in {
+    torchCheck()
     val module = new Concat[Double](2)
     val layer1 = new Sequential[Double]()
     val layer2 = new Sequential[Double]()

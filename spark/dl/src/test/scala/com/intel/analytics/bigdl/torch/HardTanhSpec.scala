@@ -20,14 +20,8 @@ import com.intel.analytics.bigdl.tensor.Tensor
 import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 @com.intel.analytics.bigdl.tags.Serial
-class HardTanhSpec  extends FlatSpec with BeforeAndAfter with Matchers {
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A HardTanh Module " should
+class HardTanhSpec  extends TorchSpec with BeforeAndAfter with Matchers {
+    "A HardTanh Module " should
     "generate correct output and grad not inplace with contiguous input" in {
     val module = new HardTanh[Double]()
     val input = Tensor[Double](2, 2, 2)
@@ -71,6 +65,7 @@ class HardTanhSpec  extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "A HardTanh Module " should "generate correct output and grad inplace with contiguous input" in {
+    torchCheck()
     val module = new HardTanh[Double](inplace = true)
     val input = Tensor[Double](2, 2, 2)
     input(Array(1, 1, 1)) = -0.97008799016476

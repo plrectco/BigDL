@@ -26,14 +26,9 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class CosineEmbeddingCriterionSpec extends FlatSpec with BeforeAndAfter with Matchers {
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A CosineEmbeddingCriterion Module" should "generate correct output and grad" in {
+class CosineEmbeddingCriterionSpec extends TorchSpec with BeforeAndAfter with Matchers {
+    "A CosineEmbeddingCriterion Module" should "generate correct output and grad" in {
+    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
     val module = new CosineEmbeddingCriterion[Double](0.2)

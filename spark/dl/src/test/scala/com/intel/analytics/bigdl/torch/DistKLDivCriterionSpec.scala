@@ -22,14 +22,9 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class DistKLDivCriterionSpec extends FlatSpec with BeforeAndAfter with Matchers{
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A DistKLDivCriterion " should "generate correct output and grad" in {
+class DistKLDivCriterionSpec extends TorchSpec with BeforeAndAfter with Matchers{
+    "A DistKLDivCriterion " should "generate correct output and grad" in {
+    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 

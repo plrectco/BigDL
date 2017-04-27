@@ -21,16 +21,11 @@ import com.intel.analytics.bigdl.utils.RandomGenerator
 import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 @com.intel.analytics.bigdl.tags.Serial
-class SumSpec extends FlatSpec with BeforeAndAfter with Matchers {
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  def randomn(): Double = RandomGenerator.RNG.normal(-10, 10)
+class SumSpec extends TorchSpec with BeforeAndAfter with Matchers {
+    def randomn(): Double = RandomGenerator.RNG.normal(-10, 10)
 
   "An Sum()" should "generate correct output and grad" in {
+    torchCheck()
     val layer = new Sum[Double]()
     val input = Tensor[Double](2, 2, 2)
     input.apply1(x => randomn())
@@ -59,6 +54,7 @@ class SumSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "An Sum(2)" should "generate correct output and grad" in {
+    torchCheck()
     val layer = new Sum[Double](2)
     val input = Tensor[Double](2, 2, 2)
     input.apply1(x => randomn())
@@ -87,6 +83,7 @@ class SumSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "An Sum(2,1,true)" should "generate correct output and grad" in {
+    torchCheck()
     val layer = new Sum[Double](2, 1, true)
     val input = Tensor[Double](2, 2, 2)
     input.apply1(x => randomn())
@@ -115,6 +112,7 @@ class SumSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "An Sum(-1,1,true)" should "generate correct output and grad" in {
+    torchCheck()
     val layer = new Sum[Double](-1, 1, true)
     val input = Tensor[Double](2, 2, 2)
     input.apply1(x => randomn())

@@ -24,14 +24,9 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import scala.math._
 
 @com.intel.analytics.bigdl.tags.Serial
-class SequentialSpec extends FlatSpec with BeforeAndAfter with Matchers {
-  before {
-    if (!TH.hasTorch()) {
-      cancel("Torch is not installed")
-    }
-  }
-
-  "A Sequential Container" should "generate correct output and grad" in {
+class SequentialSpec extends TorchSpec with BeforeAndAfter with Matchers {
+    "A Sequential Container" should "generate correct output and grad" in {
+    torchCheck()
     val module = new Sequential[Double]()
     module.add(new Linear(10, 25))
     module.add(new Linear(25, 10))
@@ -66,6 +61,7 @@ class SequentialSpec extends FlatSpec with BeforeAndAfter with Matchers {
   }
 
   "A Sequential Container" should "update weight correctly" in {
+    torchCheck()
     RNG.setSeed(10)
     val module = new Sequential[Double]()
     module.add(new Linear(10, 25))
