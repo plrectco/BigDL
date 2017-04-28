@@ -19,13 +19,12 @@ import com.intel.analytics.bigdl.nn.CMinTable
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.RandomGenerator._
 import com.intel.analytics.bigdl.utils.Table
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.collection.mutable.HashMap
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class CMinTableSpec extends TorchSpec with BeforeAndAfter with Matchers{
+class CMinTableSpec extends TorchSpec {
     "A CMaxTable Module" should "generate correct output and grad" in {
     torchCheck()
     val seed = 100

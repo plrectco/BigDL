@@ -19,12 +19,11 @@ package com.intel.analytics.bigdl.torch
 import com.intel.analytics.bigdl.nn.{CAddTable, ConcatTable, Linear, Sequential}
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.RandomGenerator._
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class CAddTableSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class CAddTableSpec extends TorchSpec {
     "CAddTable with ConcatTable" should "return right output" in {
     torchCheck()
     val seed = 100

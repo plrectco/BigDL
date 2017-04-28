@@ -24,15 +24,14 @@ import com.intel.analytics.bigdl.optim.SGD
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.RandomGenerator._
 import com.intel.analytics.bigdl.utils.{Engine, T}
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.sys.process._
 
 @com.intel.analytics.bigdl.tags.Serial
-class GRUSpec  extends TorchSpec with BeforeAndAfter with Matchers {
+class GRUSpec  extends TorchSpec {
   System.setProperty("bigdl.disableCheckSysEnv", "true")
   Engine.init(1, 1, true)
-  before {
+  override def torchCheck(): Unit = {
     if (!TH.hasTorch()) {
       cancel("Torch is not installed")
     }

@@ -18,12 +18,11 @@ package com.intel.analytics.bigdl.torch
 
 import com.intel.analytics.bigdl.nn.{Linear, Sequential}
 import com.intel.analytics.bigdl.tensor.Tensor
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.math._
 
 @com.intel.analytics.bigdl.tags.Serial
-class ModuleSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class ModuleSpec extends TorchSpec {
     "getParameter" should "behave correctly" in {
     torchCheck()
     val module = new Sequential[Double]

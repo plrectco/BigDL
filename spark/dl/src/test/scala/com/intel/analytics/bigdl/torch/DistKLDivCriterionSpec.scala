@@ -18,11 +18,10 @@ package com.intel.analytics.bigdl.torch
 import com.intel.analytics.bigdl.nn.DistKLDivCriterion
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.RandomGenerator._
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class DistKLDivCriterionSpec extends TorchSpec with BeforeAndAfter with Matchers{
+class DistKLDivCriterionSpec extends TorchSpec {
     "A DistKLDivCriterion " should "generate correct output and grad" in {
     torchCheck()
     val seed = 100

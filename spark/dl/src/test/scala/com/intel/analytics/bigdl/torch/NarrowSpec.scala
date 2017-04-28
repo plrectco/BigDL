@@ -17,12 +17,11 @@ package com.intel.analytics.bigdl.torch
 
 import com.intel.analytics.bigdl.nn.Narrow
 import com.intel.analytics.bigdl.tensor.Tensor
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class NarrowSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class NarrowSpec extends TorchSpec {
     "A Narrow Module " should "generate correct output and grad with length < 0" in {
     torchCheck()
     val input = Tensor[Double](9, 4, 14).apply1(e => Random.nextDouble())

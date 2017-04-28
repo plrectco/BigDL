@@ -20,13 +20,12 @@ import breeze.numerics.abs
 import com.intel.analytics.bigdl.nn.{BatchNormalization, GradientChecker}
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.RandomGenerator._
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import com.intel.analytics.bigdl._
 
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class BatchNormalizationSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class BatchNormalizationSpec extends TorchSpec {
     "A SpatialBatchNormalization" should "generate correct output and gradInput" in {
     torchCheck()
 
@@ -200,7 +199,7 @@ class BatchNormalizationSpec extends TorchSpec with BeforeAndAfter with Matchers
 
   "A SpatialBatchNormalization forward backward twice" should
     "generate correct output and gradInput" in {
-
+    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 

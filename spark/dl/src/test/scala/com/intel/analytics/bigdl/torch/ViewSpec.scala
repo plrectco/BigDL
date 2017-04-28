@@ -20,13 +20,12 @@ import com.intel.analytics.bigdl._
 import com.intel.analytics.bigdl.nn.{GradientChecker, View}
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.RandomGenerator._
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.math._
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class ViewSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class ViewSpec extends TorchSpec {
     "A View Container" should "generate correct output and grad" in {
     torchCheck()
     val module = new View[Double](2, 8)

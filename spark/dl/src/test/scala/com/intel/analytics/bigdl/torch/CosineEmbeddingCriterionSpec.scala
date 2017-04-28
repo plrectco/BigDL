@@ -21,12 +21,11 @@ import com.intel.analytics.bigdl.utils.RandomGenerator._
 import com.intel.analytics.bigdl.utils.{RandomGenerator, Table}
 
 import scala.collection.mutable.HashMap
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class CosineEmbeddingCriterionSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class CosineEmbeddingCriterionSpec extends TorchSpec {
     "A CosineEmbeddingCriterion Module" should "generate correct output and grad" in {
     torchCheck()
     val seed = 100

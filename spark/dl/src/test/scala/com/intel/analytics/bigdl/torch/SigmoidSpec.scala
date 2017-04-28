@@ -18,12 +18,11 @@ package com.intel.analytics.bigdl.torch
 
 import com.intel.analytics.bigdl.nn.Sigmoid
 import com.intel.analytics.bigdl.tensor.Tensor
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.math._
 
 @com.intel.analytics.bigdl.tags.Serial
-class SigmoidSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class SigmoidSpec extends TorchSpec {
     "A Sigmoid Module " should "generate correct output and grad" in {
     torchCheck()
     val module = new Sigmoid[Double]

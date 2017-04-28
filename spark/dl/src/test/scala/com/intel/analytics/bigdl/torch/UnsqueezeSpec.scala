@@ -18,12 +18,11 @@ package com.intel.analytics.bigdl.torch
 
 import com.intel.analytics.bigdl.nn.Unsqueeze
 import com.intel.analytics.bigdl.tensor.Tensor
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class UnsqueezeSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class UnsqueezeSpec extends TorchSpec {
     "A Unsqueeze(2)" should "generate correct output and grad" in {
     torchCheck()
     val layer = new Unsqueeze[Double](2)

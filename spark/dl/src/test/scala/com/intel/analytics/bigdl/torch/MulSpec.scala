@@ -18,12 +18,11 @@ package com.intel.analytics.bigdl.torch
 import com.intel.analytics.bigdl.nn.Mul
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.RandomGenerator._
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class MulSpec extends TorchSpec with BeforeAndAfter with Matchers{
+class MulSpec extends TorchSpec {
 
     "A Mul Module " should "generate correct output and grad" in {
     torchCheck()

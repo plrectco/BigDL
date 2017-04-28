@@ -18,12 +18,11 @@ package com.intel.analytics.bigdl.torch
 import com.intel.analytics.bigdl.nn.SplitTable
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.T
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class SplitTableSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class SplitTableSpec extends TorchSpec {
     "A SplitTable selects a tensor as an output" should "generate correct output and grad" in {
     torchCheck()
     val seed = 100

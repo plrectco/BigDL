@@ -19,12 +19,11 @@ package com.intel.analytics.bigdl.torch
 import com.intel.analytics.bigdl.nn.SoftMin
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.Engine
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class SoftMinSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class SoftMinSpec extends TorchSpec {
     "A SoftMin 1D input" should "generate correct output and grad" in {
     torchCheck()
     val layer = new SoftMin[Double]()

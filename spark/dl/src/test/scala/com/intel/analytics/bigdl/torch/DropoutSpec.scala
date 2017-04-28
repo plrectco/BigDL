@@ -20,10 +20,9 @@ import com.intel.analytics.bigdl.nn.Dropout
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.Engine
 import com.intel.analytics.bigdl.utils.RandomGenerator._
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 @com.intel.analytics.bigdl.tags.Serial
-class DropoutSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class DropoutSpec extends TorchSpec {
     "Dropout module with continuous input" should "converge to correct weight and bias" in {
     torchCheck()
     val module = new Dropout[Double](0.7, false, true)

@@ -22,7 +22,7 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class PaddingSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class PaddingSpec extends TorchSpec {
 
 
   "A Padding Module " should "generate correct output and grad with nInputDim != input.dim()" in {

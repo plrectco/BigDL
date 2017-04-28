@@ -18,13 +18,12 @@ package com.intel.analytics.bigdl.torch
 import com.intel.analytics.bigdl.nn.MaskedSelect
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.Table
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.collection.mutable.HashMap
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class MaskedSelectSpec extends TorchSpec with BeforeAndAfter with Matchers{
+class MaskedSelectSpec extends TorchSpec {
     "A MaskedSelect Module " should "generate correct output and grad" in {
     torchCheck()
     val module = new MaskedSelect[Double]()

@@ -18,11 +18,10 @@ package com.intel.analytics.bigdl.torch
 
 import com.intel.analytics.bigdl.nn.Transpose
 import com.intel.analytics.bigdl.tensor.Tensor
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.math._
 
-class TransposeSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class TransposeSpec extends TorchSpec {
     "A Transpose Module " should "generate correct output and grad" in {
     torchCheck()
     val module = new Transpose[Double](Array((1, 3)))

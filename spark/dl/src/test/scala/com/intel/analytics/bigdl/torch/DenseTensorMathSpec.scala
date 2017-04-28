@@ -17,12 +17,11 @@
 package com.intel.analytics.bigdl.torch
 
 import com.intel.analytics.bigdl.tensor.Tensor
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.sys.process._
 
 @com.intel.analytics.bigdl.tags.Serial
-class DenseTensorMathSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class DenseTensorMathSpec extends TorchSpec {
 
     "matrix + real" should "return correct value" in {
     torchCheck()

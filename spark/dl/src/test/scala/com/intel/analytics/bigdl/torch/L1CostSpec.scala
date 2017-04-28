@@ -18,12 +18,11 @@ package com.intel.analytics.bigdl.torch
 
 import com.intel.analytics.bigdl.nn.L1Cost
 import com.intel.analytics.bigdl.tensor.Tensor
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class L1CostSpec extends TorchSpec with BeforeAndAfter with Matchers{
+class L1CostSpec extends TorchSpec {
     "A L1Cost" should "generate correct output and grad" in {
     torchCheck()
     val layer = new L1Cost[Double]()

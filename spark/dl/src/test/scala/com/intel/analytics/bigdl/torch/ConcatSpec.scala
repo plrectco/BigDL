@@ -20,12 +20,11 @@ import com.intel.analytics.bigdl.nn._
 import com.intel.analytics.bigdl._
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.RandomGenerator._
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.math._
 
 @com.intel.analytics.bigdl.tags.Serial
-class ConcatSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class ConcatSpec extends TorchSpec {
     "A Concat Container with Linear" should "generate correct output and grad " in {
     torchCheck()
     val seed = 2

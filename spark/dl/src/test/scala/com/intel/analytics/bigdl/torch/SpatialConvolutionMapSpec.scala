@@ -18,13 +18,12 @@ package com.intel.analytics.bigdl.torch
 
 import com.intel.analytics.bigdl.nn.SpatialConvolutionMap
 import com.intel.analytics.bigdl.tensor.Tensor
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import com.intel.analytics.bigdl.utils.RandomGenerator._
 
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class SpatialConvolutionMapSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class SpatialConvolutionMapSpec extends TorchSpec {
     "A SpatialConvolution" should "generate correct output" in {
     torchCheck()
     val seed = 100

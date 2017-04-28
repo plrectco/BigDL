@@ -19,12 +19,11 @@ import com.intel.analytics.bigdl.nn.{Bottle, Linear}
 import com.intel.analytics.bigdl._
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.RandomGenerator._
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class BottleSpec extends TorchSpec with BeforeAndAfter with Matchers{
+class BottleSpec extends TorchSpec {
     "A Bottle Container" should "generate correct output and grad" in {
     torchCheck()
     val seed = 100

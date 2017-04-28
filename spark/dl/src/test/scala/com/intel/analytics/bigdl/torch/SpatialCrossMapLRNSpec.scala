@@ -19,13 +19,12 @@ package com.intel.analytics.bigdl.torch
 import com.intel.analytics.bigdl.nn.{GradientChecker, SpatialCrossMapLRN}
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.RandomGenerator._
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import com.intel.analytics.bigdl._
 
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class SpatialCrossMapLRNSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class SpatialCrossMapLRNSpec extends TorchSpec {
     "A SpatialCrossMapLRN Layer" should "generate correct output" in {
     torchCheck()
     val seed = 100

@@ -18,12 +18,11 @@ package com.intel.analytics.bigdl.torch
 
 import com.intel.analytics.bigdl.nn.MSECriterion
 import com.intel.analytics.bigdl.tensor.Tensor
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.math._
 
 @com.intel.analytics.bigdl.tags.Serial
-class MSECriterionSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class MSECriterionSpec extends TorchSpec {
     "A MSE Criterion " should "generate correct output and grad" in {
     torchCheck()
     val mse = new MSECriterion[Double]

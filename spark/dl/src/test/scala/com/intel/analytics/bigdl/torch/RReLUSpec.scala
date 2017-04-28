@@ -23,7 +23,7 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers, fixture}
 
 import scala.math._
 @com.intel.analytics.bigdl.tags.Serial
-class RReLUSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class RReLUSpec extends TorchSpec {
     "A RReLU Module " should "generate correct output and grad not inplace when train = true" in {
     torchCheck()
     val seed = 100

@@ -19,12 +19,11 @@ package com.intel.analytics.bigdl.torch
 import com.intel.analytics.bigdl.nn.Threshold
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.Engine
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.math._
 
 @com.intel.analytics.bigdl.tags.Serial
-class ThresholdSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class ThresholdSpec extends TorchSpec {
     "A Threshold Module " should "generate correct output and grad" in {
     torchCheck()
     val module = new Threshold[Double](1, 0.8)

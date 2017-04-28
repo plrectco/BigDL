@@ -19,10 +19,9 @@ package com.intel.analytics.bigdl.torch
 import com.intel.analytics.bigdl.optim.Adagrad
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.{RandomGenerator, T}
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 @com.intel.analytics.bigdl.tags.Serial
-class AdagradSpec extends TorchSpec with BeforeAndAfter with Matchers{
+class AdagradSpec extends TorchSpec {
     "Adagrad with weightDecay" should "works fine" in {
     torchCheck()
     RandomGenerator.RNG.setSeed(10)

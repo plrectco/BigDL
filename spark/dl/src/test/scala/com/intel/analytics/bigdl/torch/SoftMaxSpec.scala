@@ -18,12 +18,11 @@ package com.intel.analytics.bigdl.torch
 
 import com.intel.analytics.bigdl.nn.SoftMax
 import com.intel.analytics.bigdl.tensor.Tensor
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class SoftMaxSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class SoftMaxSpec extends TorchSpec {
     "A SoftMax 1D input" should "generate correct output and grad" in {
     torchCheck()
     val layer = new SoftMax[Double]()

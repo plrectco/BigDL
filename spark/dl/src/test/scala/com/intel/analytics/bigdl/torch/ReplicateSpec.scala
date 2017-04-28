@@ -18,12 +18,11 @@ package com.intel.analytics.bigdl.torch
 
 import com.intel.analytics.bigdl.nn.Replicate
 import com.intel.analytics.bigdl.tensor.Tensor
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class ReplicateSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class ReplicateSpec extends TorchSpec {
     "A Replicate(3)" should "generate correct output and grad" in {
     torchCheck()
     val layer = new Replicate[Double](3)

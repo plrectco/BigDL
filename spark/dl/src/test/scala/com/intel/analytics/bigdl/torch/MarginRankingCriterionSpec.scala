@@ -17,13 +17,12 @@ package com.intel.analytics.bigdl.torch
 import com.intel.analytics.bigdl.nn.MarginRankingCriterion
 import com.intel.analytics.bigdl.tensor.{Storage, Tensor}
 import com.intel.analytics.bigdl.utils.Table
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.collection.mutable.HashMap
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class MarginRankingCriterionSpec extends TorchSpec with BeforeAndAfter with Matchers{
+class MarginRankingCriterionSpec extends TorchSpec {
     "A MarginRankingCriterion " should "generate correct output and grad with only value" in {
     torchCheck()
     val mse = new MarginRankingCriterion[Double]()

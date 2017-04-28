@@ -18,11 +18,10 @@ package com.intel.analytics.bigdl.torch
 
 import com.intel.analytics.bigdl.nn.CAdd
 import com.intel.analytics.bigdl.tensor.Tensor
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import com.intel.analytics.bigdl.utils.RandomGenerator._
 
 @com.intel.analytics.bigdl.tags.Serial
-class CAddSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class CAddSpec extends TorchSpec {
     "A CAdd(5, 1)" should "generate correct output and grad" in {
     torchCheck()
     val seed = 100

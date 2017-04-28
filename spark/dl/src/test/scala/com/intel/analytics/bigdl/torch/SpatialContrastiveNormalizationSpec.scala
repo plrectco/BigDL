@@ -19,12 +19,11 @@ package com.intel.analytics.bigdl.torch
 import com.intel.analytics.bigdl.nn.{Sequential, SpatialContrastiveNormalization}
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.RandomGenerator._
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class SpatialContrastiveNormalizationSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class SpatialContrastiveNormalizationSpec extends TorchSpec {
     "A SpatialContrastiveNormalization 3D input" should "generate correct output and grad" in {
     torchCheck()
     val seed = 100
@@ -177,6 +176,7 @@ class SpatialContrastiveNormalizationSpec extends TorchSpec with BeforeAndAfter 
 
   "SpatialContrastiveNormalization(4, kernel) with 3D input" should
     "generate correct output and grad" in {
+    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 
@@ -213,6 +213,7 @@ class SpatialContrastiveNormalizationSpec extends TorchSpec with BeforeAndAfter 
 
   "A SpatialContrastiveNormalization(1, gaussian) whit 3D input" should
     "generate correct output and grad" in {
+    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 

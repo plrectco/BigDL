@@ -20,12 +20,11 @@ import com.intel.analytics.bigdl._
 import com.intel.analytics.bigdl.nn.{GradientChecker, LogSoftMax}
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.RandomGenerator._
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class LogSoftMaxSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class LogSoftMaxSpec extends TorchSpec {
     "A LogSoftMax Module " should "generate correct output and grad with input 2D" in {
     torchCheck()
     val module = new LogSoftMax[Double]()

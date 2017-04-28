@@ -19,10 +19,9 @@ package com.intel.analytics.bigdl.torch
 import com.intel.analytics.bigdl.nn.CMul
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.RandomGenerator._
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 @com.intel.analytics.bigdl.tags.Serial
-class CMulSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class CMulSpec extends TorchSpec {
     "A CMul(5, 1)" should "generate correct output and grad" in {
     torchCheck()
     val seed = 100

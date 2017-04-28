@@ -18,12 +18,11 @@ package com.intel.analytics.bigdl.torch
 
 import com.intel.analytics.bigdl.nn.Tanh
 import com.intel.analytics.bigdl.tensor.Tensor
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.math._
 
 @com.intel.analytics.bigdl.tags.Serial
-class TanhSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class TanhSpec extends TorchSpec {
     "A Tanh Module " should "generate correct output and grad" in {
     torchCheck()
     val module = new Tanh[Double]()

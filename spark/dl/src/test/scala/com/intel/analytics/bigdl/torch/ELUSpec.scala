@@ -19,10 +19,9 @@ import com.intel.analytics.bigdl.nn.ELU
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.RandomGenerator
 import com.intel.analytics.bigdl.utils.RandomGenerator._
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 @com.intel.analytics.bigdl.tags.Serial
-class ELUSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class ELUSpec extends TorchSpec {
     def random(): Double = RandomGenerator.RNG.normal(-10, 10)
 
   "A ELU Module " should "generate correct output and grad not inplace" in {

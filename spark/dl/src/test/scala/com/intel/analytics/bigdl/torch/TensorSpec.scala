@@ -16,10 +16,9 @@
 package com.intel.analytics.bigdl.torch
 
 import com.intel.analytics.bigdl.tensor.Tensor
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 @com.intel.analytics.bigdl.tags.Serial
-class TensorSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class TensorSpec extends TorchSpec {
     "Read empty LongTensor" should "generate correct output" in {
     torchCheck()
     val empty = Tensor[Double]()

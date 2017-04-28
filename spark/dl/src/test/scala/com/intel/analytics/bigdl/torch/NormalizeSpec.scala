@@ -17,12 +17,11 @@ package com.intel.analytics.bigdl.torch
 
 import com.intel.analytics.bigdl.nn.Normalize
 import com.intel.analytics.bigdl.tensor.Tensor
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class NormalizeSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class NormalizeSpec extends TorchSpec {
     "A Normalize Module" should "generate correct output and grad with input one dimension" in {
     torchCheck()
     val p = 1.5
@@ -82,6 +81,7 @@ class NormalizeSpec extends TorchSpec with BeforeAndAfter with Matchers {
 
   "A Normalize Module multiple time" should "generate correct" +
     " output and grad with input two dimensions" in {
+    torchCheck()
     val input = Tensor[Double](2, 9).apply1(e => Random.nextDouble())
     val gradOutput = Tensor[Double](2, 9).apply1(e => Random.nextDouble())
 

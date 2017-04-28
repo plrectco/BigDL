@@ -19,13 +19,12 @@ package com.intel.analytics.bigdl.torch
 import com.intel.analytics.bigdl.nn.{GradientChecker, Linear, MSECriterion}
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.RandomGenerator._
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.util.Random
 import com.intel.analytics.bigdl._
 
 @com.intel.analytics.bigdl.tags.Serial
-class LinearSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class LinearSpec extends TorchSpec {
     "Linear module" should "converge to correct weight and bias" in {
     torchCheck()
     val inputN = 5

@@ -18,12 +18,11 @@ package com.intel.analytics.bigdl.torch
 import com.intel.analytics.bigdl.nn.JoinTable
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.{RandomGenerator, T, Table}
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.collection.mutable
 
 @com.intel.analytics.bigdl.tags.Serial
-class JoinTableSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class JoinTableSpec extends TorchSpec {
     "A JoinTable()" should "generate correct output and grad" in {
     torchCheck()
     def randomn(): Double = RandomGenerator.RNG.uniform(-10, 10)

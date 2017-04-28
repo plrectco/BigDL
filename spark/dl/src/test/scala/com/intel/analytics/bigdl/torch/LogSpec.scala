@@ -18,10 +18,9 @@ package com.intel.analytics.bigdl.torch
 import com.intel.analytics.bigdl.nn.{Log, Power}
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.RandomGenerator
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 @com.intel.analytics.bigdl.tags.Serial
-class LogSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class LogSpec extends TorchSpec {
     "A Log()" should "generate correct output and grad" in {
     torchCheck()
     def randomn(): Double = RandomGenerator.RNG.uniform(2, 10)

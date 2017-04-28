@@ -17,12 +17,11 @@ package com.intel.analytics.bigdl.torch
 
 import com.intel.analytics.bigdl.nn.L1Penalty
 import com.intel.analytics.bigdl.tensor.Tensor
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class L1PenaltySpec extends TorchSpec with BeforeAndAfter with Matchers{
+class L1PenaltySpec extends TorchSpec {
     "A L1Penalty" should "generate correct output and grad" in {
     torchCheck()
     val layer = new L1Penalty[Double](1, true)

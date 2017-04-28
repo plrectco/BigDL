@@ -18,12 +18,11 @@ package com.intel.analytics.bigdl.torch
 import com.intel.analytics.bigdl.nn._
 import com.intel.analytics.bigdl._
 import com.intel.analytics.bigdl.tensor.Tensor
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class MultiCriterionSpec extends TorchSpec with BeforeAndAfter with Matchers{
+class MultiCriterionSpec extends TorchSpec {
     "A MultiCriterion Module " should "generate correct output and grad with Tensor input" in {
     torchCheck()
     val module = new MultiCriterion[Double]()

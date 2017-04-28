@@ -18,12 +18,11 @@ package com.intel.analytics.bigdl.torch
 
 import com.intel.analytics.bigdl.nn.Min
 import com.intel.analytics.bigdl.tensor.Tensor
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class MinSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class MinSpec extends TorchSpec {
     "A Min(2)" should "generate correct output and grad" in {
     torchCheck()
     val layer = new Min[Double](2)

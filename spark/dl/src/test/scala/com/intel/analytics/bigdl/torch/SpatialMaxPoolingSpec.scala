@@ -19,14 +19,13 @@ package com.intel.analytics.bigdl.torch
 import com.intel.analytics.bigdl.nn.{GradientChecker, SpatialMaxPooling}
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.RandomGenerator._
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.math._
 import scala.util.Random
 import com.intel.analytics.bigdl._
 
 @com.intel.analytics.bigdl.tags.Serial
-class SpatialMaxPoolingSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class SpatialMaxPoolingSpec extends TorchSpec {
     "A SpatialMaxPooling" should "generate correct output and gradInput" in {
     torchCheck()
     val module = new SpatialMaxPooling[Double](2, 2)

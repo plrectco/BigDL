@@ -17,12 +17,11 @@ package com.intel.analytics.bigdl.torch
 
 import com.intel.analytics.bigdl.nn.MulConstant
 import com.intel.analytics.bigdl.tensor.Tensor
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class MulConstantSpec extends TorchSpec with BeforeAndAfter with Matchers{
+class MulConstantSpec extends TorchSpec {
     "A MulConstant Module " should "generate correct output and grad" in {
     torchCheck()
     val module = new MulConstant[Double](10)

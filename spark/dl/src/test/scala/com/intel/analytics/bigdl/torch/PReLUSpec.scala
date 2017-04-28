@@ -17,13 +17,12 @@ package com.intel.analytics.bigdl.torch
 
 import com.intel.analytics.bigdl.nn.PReLU
 import com.intel.analytics.bigdl.tensor.Tensor
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.math._
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class PReLUSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class PReLUSpec extends TorchSpec {
     "A PReLU Module " should "generate correct output and grad not inplace" in {
     torchCheck()
     val module = new PReLU[Double]()

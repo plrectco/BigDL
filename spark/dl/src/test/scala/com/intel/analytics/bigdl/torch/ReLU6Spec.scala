@@ -18,12 +18,11 @@ package com.intel.analytics.bigdl.torch
 import com.intel.analytics.bigdl.nn.ReLU6
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.Engine
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.math._
 
 @com.intel.analytics.bigdl.tags.Serial
-class ReLU6Spec extends TorchSpec with BeforeAndAfter with Matchers {
+class ReLU6Spec extends TorchSpec {
     "A ReLU6 Module " should "generate correct output and grad not inplace" in {
     torchCheck()
     val module = new ReLU6[Double]()

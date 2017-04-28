@@ -18,10 +18,9 @@ package com.intel.analytics.bigdl.torch
 
 import com.intel.analytics.bigdl.nn.{Exp, Power}
 import com.intel.analytics.bigdl.tensor.Tensor
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 @com.intel.analytics.bigdl.tags.Serial
-class ExpSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class ExpSpec extends TorchSpec {
     "An Exp" should "generate correct output and grad" in {
     torchCheck()
     val layer = new Exp[Double]()

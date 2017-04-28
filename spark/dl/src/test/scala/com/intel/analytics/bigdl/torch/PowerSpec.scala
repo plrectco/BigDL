@@ -18,10 +18,9 @@ package com.intel.analytics.bigdl.torch
 
 import com.intel.analytics.bigdl.nn.{Power}
 import com.intel.analytics.bigdl.tensor.Tensor
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 @com.intel.analytics.bigdl.tags.Serial
-class PowerSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class PowerSpec extends TorchSpec {
     "A Power(2)" should "generate correct output and grad" in {
     torchCheck()
     val layer = new Power[Double](2)

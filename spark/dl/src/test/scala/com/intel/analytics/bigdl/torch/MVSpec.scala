@@ -18,12 +18,11 @@ package com.intel.analytics.bigdl.torch
 import com.intel.analytics.bigdl.nn.MV
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.{RandomGenerator, T, Table}
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.collection.mutable
 
 @com.intel.analytics.bigdl.tags.Serial
-class MVSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class MVSpec extends TorchSpec {
     def randn(): Double = RandomGenerator.RNG.uniform(-10, 10)
   "A MV" should "generate correct output with no transform and no batch" in {
     torchCheck()

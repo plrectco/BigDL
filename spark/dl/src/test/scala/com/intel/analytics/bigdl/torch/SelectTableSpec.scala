@@ -18,13 +18,12 @@ package com.intel.analytics.bigdl.torch
 import com.intel.analytics.bigdl.nn.SelectTable
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.{T, Table}
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.collection.mutable.HashMap
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class SelectTableSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class SelectTableSpec extends TorchSpec {
     "A SelectTable selects a tensor as an output" should "generate correct output and grad" in {
     torchCheck()
     val seed = 100

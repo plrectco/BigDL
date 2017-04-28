@@ -17,12 +17,11 @@ package com.intel.analytics.bigdl.torch
 
 import com.intel.analytics.bigdl.nn.MultiLabelMarginCriterion
 import com.intel.analytics.bigdl.tensor.Tensor
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class MultiLabelMarginCriterionSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class MultiLabelMarginCriterionSpec extends TorchSpec {
   "A MultiLabelMarginCriterion " should "generate correct output and grad whith one dimension" in {
     torchCheck()
     val layer = new MultiLabelMarginCriterion[Double]()

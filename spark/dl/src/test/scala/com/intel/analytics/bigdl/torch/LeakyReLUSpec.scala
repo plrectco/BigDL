@@ -19,10 +19,9 @@ import com.intel.analytics.bigdl.nn.{LeakyReLU, RReLU}
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.RandomGenerator
 import com.intel.analytics.bigdl.utils.RandomGenerator._
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 @com.intel.analytics.bigdl.tags.Serial
-class LeakyReLUSpec  extends TorchSpec with BeforeAndAfter with Matchers {
+class LeakyReLUSpec  extends TorchSpec {
     def random(): Double = RandomGenerator.RNG.normal(-10, 10)
 
   "A LeakyReLU Module " should "generate correct output and grad not inplace when train = true" in {

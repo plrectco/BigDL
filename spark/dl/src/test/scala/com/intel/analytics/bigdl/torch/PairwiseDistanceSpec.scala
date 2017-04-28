@@ -18,12 +18,11 @@ package com.intel.analytics.bigdl.torch
 import com.intel.analytics.bigdl.nn.PairwiseDistance
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.T
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class PairwiseDistanceSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class PairwiseDistanceSpec extends TorchSpec {
     "A PairwiseDistance with one dimension input" should "generate correct output and grad" in {
     torchCheck()
     val seed = 100

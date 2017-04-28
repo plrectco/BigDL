@@ -14,10 +14,9 @@
  * limitations under the License.
  */
 package com.intel.analytics.bigdl.torch
+import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
-import org.scalatest.FlatSpec
-
-class TorchSpec extends FlatSpec {
+class TorchSpec extends FlatSpec with BeforeAndAfter with Matchers {
   def torchCheck(): Unit = {
     if (!TH.hasTorch()) {
       cancel("Torch is not installed")

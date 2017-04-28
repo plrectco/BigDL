@@ -17,12 +17,11 @@ package com.intel.analytics.bigdl.torch
 
 import com.intel.analytics.bigdl.nn.SoftMarginCriterion
 import com.intel.analytics.bigdl.tensor.Tensor
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class SoftMarginCriterionSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class SoftMarginCriterionSpec extends TorchSpec {
     "A SoftMarginCriterion Module " should "generate correct output and grad" in {
     torchCheck()
     val module = new SoftMarginCriterion[Double]()
@@ -54,6 +53,7 @@ class SoftMarginCriterionSpec extends TorchSpec with BeforeAndAfter with Matcher
 
   "A SoftMarginCriterion Module with setting sizeAverage to false" should "generate " +
     "correct output and grad" in {
+    torchCheck()
     val module = new SoftMarginCriterion[Double](false)
     Random.setSeed(100)
     val input = Tensor[Double](4, 10).apply1(e => Random.nextDouble())

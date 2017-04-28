@@ -17,12 +17,12 @@ package com.intel.analytics.bigdl.torch
 
 import com.intel.analytics.bigdl.nn.MultiLabelSoftMarginCriterion
 import com.intel.analytics.bigdl.tensor.Tensor
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 @com.intel.analytics.bigdl.tags.Serial
-class MultiLabelSoftMarginCriterionSpec extends TorchSpec with BeforeAndAfter with Matchers{
+class MultiLabelSoftMarginCriterionSpec extends TorchSpec {
     "A MultiLabelSoftMarginCriterion Criterion " should
     "generate correct output and grad" in {
+    torchCheck()
     val criterion = new MultiLabelSoftMarginCriterion[Double]()
 
     val input = Tensor[Double](3)

@@ -19,12 +19,11 @@ package com.intel.analytics.bigdl.torch
 import com.intel.analytics.bigdl.nn.{ClassNLLCriterion, MSECriterion, ParallelCriterion}
 import com.intel.analytics.bigdl.tensor.{Storage, Tensor}
 import com.intel.analytics.bigdl.utils.{Engine, T, Table}
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class ParallelCriterionSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class ParallelCriterionSpec extends TorchSpec {
     "A ParallelCriterion " should "generate correct output and grad" in {
     torchCheck()
     val seed = 100

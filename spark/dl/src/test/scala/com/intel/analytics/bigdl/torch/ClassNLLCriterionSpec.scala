@@ -18,10 +18,9 @@ package com.intel.analytics.bigdl.torch
 
 import com.intel.analytics.bigdl.nn.ClassNLLCriterion
 import com.intel.analytics.bigdl.tensor.Tensor
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 @com.intel.analytics.bigdl.tags.Serial
-class ClassNLLCriterionSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class ClassNLLCriterionSpec extends TorchSpec {
     "A ClassNLL Criterion " should "generate correct output and grad" in {
     torchCheck()
     val criterion = new ClassNLLCriterion[Double]()

@@ -17,12 +17,11 @@ package com.intel.analytics.bigdl.torch
 
 import com.intel.analytics.bigdl.nn.LogSigmoid
 import com.intel.analytics.bigdl.tensor.Tensor
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class LogSigmoidSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class LogSigmoidSpec extends TorchSpec {
     "A LogSigmoid Module " should "generate correct output and grad" in {
     torchCheck()
     val module = new LogSigmoid[Double]()

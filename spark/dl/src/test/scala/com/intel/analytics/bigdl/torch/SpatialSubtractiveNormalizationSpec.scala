@@ -20,12 +20,11 @@ import com.intel.analytics.bigdl.nn.{Sequential, SpatialSubtractiveNormalization
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.Engine
 import com.intel.analytics.bigdl.utils.RandomGenerator._
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class SpatialSubtractiveNormalizationSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class SpatialSubtractiveNormalizationSpec extends TorchSpec {
     "A SpatialSubtractiveNormalization 3D input" should "generate correct output and grad" in {
     torchCheck()
     val seed = 100

@@ -19,12 +19,11 @@ import com.intel.analytics.bigdl.nn.Bilinear
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.RandomGenerator._
 import com.intel.analytics.bigdl.utils.Table
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
-class BilinearSpec extends TorchSpec with BeforeAndAfter with Matchers{
+class BilinearSpec extends TorchSpec {
     "A Bilinear " should "generate correct output and grad" in {
     torchCheck()
     val seed = 100

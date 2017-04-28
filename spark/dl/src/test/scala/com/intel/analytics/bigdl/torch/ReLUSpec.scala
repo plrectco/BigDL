@@ -19,14 +19,13 @@ package com.intel.analytics.bigdl.torch
 import com.intel.analytics.bigdl.nn.{GradientChecker, ReLU}
 import com.intel.analytics.bigdl.tensor.Tensor
 import com.intel.analytics.bigdl.utils.RandomGenerator._
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.math._
 import scala.util.Random
 import com.intel.analytics.bigdl._
 
 @com.intel.analytics.bigdl.tags.Serial
-class ReLUSpec extends TorchSpec with BeforeAndAfter with Matchers {
+class ReLUSpec extends TorchSpec {
     "A ReLU Module " should "generate correct output and grad" in {
     torchCheck()
     val module = new ReLU[Double]()
