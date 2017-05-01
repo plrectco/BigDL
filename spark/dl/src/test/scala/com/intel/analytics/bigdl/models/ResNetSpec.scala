@@ -35,7 +35,6 @@ class ResNetSpec extends TorchSpec {
   "ResNet Float" should "generate correct output" in {
     // System.setProperty("java.io.tmpdir", "/disk2/test");
     Engine.setCoreNumber(4)
-    torchCheck()
 
     for (i <- 1 to 1) {
       println(s"unitTest-${i}")

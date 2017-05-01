@@ -23,7 +23,7 @@ import com.intel.analytics.bigdl.utils.RandomGenerator._
 @com.intel.analytics.bigdl.tags.Serial
 class CAddSpec extends TorchSpec {
     "A CAdd(5, 1)" should "generate correct output and grad" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -61,7 +61,7 @@ class CAddSpec extends TorchSpec {
   }
 
   "A CAdd(3)" should "generate correct output and grad" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -99,7 +99,7 @@ class CAddSpec extends TorchSpec {
   }
 
   "A CAdd(3, 4)" should "generate correct output and grad" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -137,7 +137,7 @@ class CAddSpec extends TorchSpec {
   }
 
   "A CAdd(1, 10, 1, 1)" should "generate correct output and grad" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 

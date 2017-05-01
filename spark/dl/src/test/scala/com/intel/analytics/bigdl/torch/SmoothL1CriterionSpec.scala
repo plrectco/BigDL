@@ -24,7 +24,6 @@ import scala.math._
 @com.intel.analytics.bigdl.tags.Serial
 class SmoothL1CriterionSpec extends TorchSpec {
     "A Smooth Criterion " should "generate correct output and grad" in {
-    torchCheck()
     val mse = new SmoothL1Criterion[Double]
     val input = Tensor[Double](2, 2, 2)
     input(Array(1, 1, 1)) = 0.17503996845335

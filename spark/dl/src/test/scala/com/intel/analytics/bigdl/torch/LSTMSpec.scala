@@ -29,7 +29,7 @@ import scala.sys.process._
 
 @com.intel.analytics.bigdl.tags.Serial
 class LSTMSpec  extends TorchSpec {
-  override def torchCheck(): Unit = {
+  override def beforeAll() {
     if (!TH.hasTorch()) {
       cancel("Torch is not installed")
     }
@@ -46,8 +46,7 @@ class LSTMSpec  extends TorchSpec {
   }
 
   "A LSTM " should "has same loss as torch rnn" in {
-    torchCheck()
-
+    
     val hiddenSize = 4
     val inputSize = 6
     val outputSize = 5
@@ -214,8 +213,7 @@ class LSTMSpec  extends TorchSpec {
 
 
   "A LSTM " should "has same loss as torch rnn in batch mode" in {
-    torchCheck()
-
+    
     val hiddenSize = 4
     val inputSize = 6
     val outputSize = 5
@@ -369,7 +367,7 @@ class LSTMSpec  extends TorchSpec {
   }
 
   "A LSTM " should "converge" in {
-    torchCheck()
+    
 
     val hiddenSize = 4
     val inputSize = 6
@@ -431,7 +429,7 @@ class LSTMSpec  extends TorchSpec {
   }
 
   "A LSTM " should "converge in batch mode" in {
-    torchCheck()
+    
 
     val hiddenSize = 4
     val inputSize = 6

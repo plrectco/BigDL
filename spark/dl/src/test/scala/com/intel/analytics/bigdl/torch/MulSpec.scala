@@ -25,7 +25,7 @@ import scala.util.Random
 class MulSpec extends TorchSpec {
 
     "A Mul Module " should "generate correct output and grad" in {
-    torchCheck()
+    
     val inputN = 5
     val seed = 100
     RNG.setSeed(seed)

@@ -25,7 +25,7 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class MixtureTableSpec extends TorchSpec {
     "A MixtureTable " should "generate correct output and grad with table expertInput" in {
-    torchCheck()
+    
     val mse = new MixtureTable[Double]
 
     val expertInput = Tensor[Double](5, 3, 6).apply1(e => Random.nextDouble())
@@ -64,7 +64,6 @@ class MixtureTableSpec extends TorchSpec {
   }
 
   "A MixtureTable " should "generate correct output and grad with tensor expertInput" in {
-    torchCheck()
     val mse = new MixtureTable[Double]
 
     val expertInput = Tensor[Double](5, 3, 6).apply1(e => Random.nextDouble())

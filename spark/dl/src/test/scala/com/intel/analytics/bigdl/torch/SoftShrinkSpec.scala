@@ -23,7 +23,7 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class SoftShrinkSpec extends TorchSpec {
     "A SoftShrink 3D input" should "generate correct output and grad" in {
-    torchCheck()
+    
     val layer = new SoftShrink[Double]()
     val input = Tensor[Double](2, 3, 4).apply1(_ => Random.nextDouble())
     val gradOutput = Tensor[Double](2, 3, 4).apply1(_ => Random.nextDouble())
@@ -50,7 +50,6 @@ class SoftShrinkSpec extends TorchSpec {
   }
 
   "A SoftShrink 4D input" should "generate correct output and grad" in {
-    torchCheck()
     val layer = new SoftShrink[Double](2.0)
     val input = Tensor[Double](5, 4, 3, 2).apply1(_ => Random.nextDouble())
     val gradOutput = Tensor[Double](5, 4, 3, 2).apply1(_ => Random.nextDouble())

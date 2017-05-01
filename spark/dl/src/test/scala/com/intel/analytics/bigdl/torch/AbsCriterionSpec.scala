@@ -21,7 +21,7 @@ import com.intel.analytics.bigdl.tensor.Tensor
 @com.intel.analytics.bigdl.tags.Serial
 class AbsCriterionSpec extends TorchSpec {
     "A Abs Criterion " should "generate correct output and grad" in {
-    torchCheck()
+    
     val criterion = new AbsCriterion[Double]()
 
     val input = Tensor[Double](3)

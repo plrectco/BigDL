@@ -28,7 +28,6 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class SpatialConvolutionSpec extends TorchSpec {
     "A SpatialConvolution" should "generate correct output" in {
-    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 
@@ -71,7 +70,7 @@ class SpatialConvolutionSpec extends TorchSpec {
 
 
   "A SpatialConvolution(64,192,5,5,1,1,2,2)" should "generate correct output" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -120,7 +119,6 @@ class SpatialConvolutionSpec extends TorchSpec {
   }
 
   "A SpatialConvolution" should "be good in gradient check for input" in {
-    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
     val layer = new SpatialConvolution[Double](3, 6, 5, 5, 1, 1, 0, 0)
@@ -131,7 +129,7 @@ class SpatialConvolutionSpec extends TorchSpec {
   }
 
   "A SpatialConvolution" should "be good in gradient check for weight" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
     val layer = new SpatialConvolution[Double](3, 6, 5, 5, 1, 1, 0, 0)

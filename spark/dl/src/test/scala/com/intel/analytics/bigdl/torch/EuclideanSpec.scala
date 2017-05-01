@@ -24,7 +24,6 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class EuclideanSpec extends TorchSpec {
     "A Euclidean " should "generate correct output and grad with input one dimension" in {
-    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 
@@ -67,7 +66,7 @@ class EuclideanSpec extends TorchSpec {
   }
 
   "A Euclidean " should "generate correct output and grad with input two dimensions" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 

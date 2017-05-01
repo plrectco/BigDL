@@ -26,7 +26,6 @@ import scala.math._
 @com.intel.analytics.bigdl.tags.Serial
 class ConcatSpec extends TorchSpec {
     "A Concat Container with Linear" should "generate correct output and grad " in {
-    torchCheck()
     val seed = 2
     RNG.setSeed(seed)
     val module = new Concat[Double](2)
@@ -88,7 +87,6 @@ class ConcatSpec extends TorchSpec {
   }
 
   "A Concat Container" should "generate correct output and grad" in {
-    torchCheck()
     val module = new Concat[Double](2)
     val layer1 = new Sequential[Double]()
     val layer2 = new Sequential[Double]()

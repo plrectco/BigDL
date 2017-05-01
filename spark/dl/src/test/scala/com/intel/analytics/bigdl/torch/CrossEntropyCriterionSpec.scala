@@ -24,7 +24,6 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class CrossEntropyCriterionSpec extends TorchSpec {
     "A CrossEntropyCriterion Module" should "generate correct output and grad" in {
-    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
     val module = new CrossEntropyCriterion[Double]()
@@ -61,7 +60,7 @@ class CrossEntropyCriterionSpec extends TorchSpec {
 
   "A CrossEntropyCriterion(sizeAverage = false) Module" should
     "generate correct output and grad" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
     val module = new CrossEntropyCriterion[Double](sizeAverage = false)

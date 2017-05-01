@@ -24,7 +24,6 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class SplitTableSpec extends TorchSpec {
     "A SplitTable selects a tensor as an output" should "generate correct output and grad" in {
-    torchCheck()
     val seed = 100
     Random.setSeed(seed)
 

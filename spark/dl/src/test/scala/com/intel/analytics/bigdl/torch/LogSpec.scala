@@ -22,7 +22,6 @@ import com.intel.analytics.bigdl.utils.RandomGenerator
 @com.intel.analytics.bigdl.tags.Serial
 class LogSpec extends TorchSpec {
     "A Log()" should "generate correct output and grad" in {
-    torchCheck()
     def randomn(): Double = RandomGenerator.RNG.uniform(2, 10)
     val layer = new Log[Double]()
     val input = Tensor[Double](2, 2, 2)

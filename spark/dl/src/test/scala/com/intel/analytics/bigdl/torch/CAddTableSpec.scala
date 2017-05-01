@@ -25,7 +25,7 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class CAddTableSpec extends TorchSpec {
     "CAddTable with ConcatTable" should "return right output" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -61,7 +61,7 @@ class CAddTableSpec extends TorchSpec {
   }
 
   "CAddTable inplace with ConcatTable" should "return right output" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 

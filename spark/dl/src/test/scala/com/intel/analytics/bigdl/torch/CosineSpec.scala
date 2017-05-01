@@ -24,7 +24,6 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class CosineSpec extends TorchSpec {
     "A Cosine Module" should "generate correct output and grad in 2D" in {
-    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
     val module = new Cosine[Double](2, 3)
@@ -62,7 +61,6 @@ class CosineSpec extends TorchSpec {
   }
 
   "A Cosine Module" should "generate correct output and grad in 1D" in {
-    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 

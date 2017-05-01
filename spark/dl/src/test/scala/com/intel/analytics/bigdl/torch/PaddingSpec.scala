@@ -22,10 +22,7 @@ import scala.util.Random
 
 @com.intel.analytics.bigdl.tags.Serial
 class PaddingSpec extends TorchSpec {
-
-
   "A Padding Module " should "generate correct output and grad with nInputDim != input.dim()" in {
-    torchCheck()
     val dim = 1
     val pad = -1
     val nInputDim = 4
@@ -60,7 +57,6 @@ class PaddingSpec extends TorchSpec {
   }
 
   "A Padding Module " should "generate correct output and grad with nInputDim == input.dim()" in {
-    torchCheck()
     val dim = 1
     val pad = 1
     val nInputDim = 3
@@ -95,7 +91,7 @@ class PaddingSpec extends TorchSpec {
   }
 
   "A Padding Module " should "generate correct output and grad with index == 1" in {
-    torchCheck()
+    
     val dim = 1
     val pad = -1
     val nInputDim = 4

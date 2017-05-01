@@ -25,7 +25,7 @@ import scala.collection.mutable
 class MMSpec extends TorchSpec {
     def randn(): Double = RandomGenerator.RNG.uniform(-10, 10)
   "A MM" should "generate correct output with no transform and no batch" in {
-    torchCheck()
+    
     val input1 = Tensor[Double](5, 3).apply1(x => randn())
     val input2 = Tensor[Double](3, 5).apply1(x => randn())
     val input = T(input1, input2)
@@ -58,7 +58,6 @@ class MMSpec extends TorchSpec {
   }
 
   "A MM" should "generate correct output with transform and no batch" in {
-    torchCheck()
     val input1 = Tensor[Double](3, 5).apply1(x => randn())
     val input2 = Tensor[Double](5, 3).apply1(x => randn())
     val input = T(input1, input2)
@@ -92,7 +91,6 @@ class MMSpec extends TorchSpec {
   }
 
   "A MM" should "generate correct output with no transform and batch" in {
-    torchCheck()
     val input1 = Tensor[Double](4, 5, 3).apply1(x => randn())
     val input2 = Tensor[Double](4, 3, 5).apply1(x => randn())
     val input = T(input1, input2)
@@ -126,7 +124,6 @@ class MMSpec extends TorchSpec {
 
 
   "A MM" should "generate correct output with transform and batch" in {
-    torchCheck()
     val input1 = Tensor[Double](4, 3, 5).apply1(x => randn())
     val input2 = Tensor[Double](4, 5, 3).apply1(x => randn())
     val input = T(input1, input2)

@@ -27,7 +27,7 @@ import com.intel.analytics.bigdl._
 @com.intel.analytics.bigdl.tags.Serial
 class SpatialBatchNormalizationSpec extends TorchSpec {
     "A SpatialBatchNormalization" should "generate correct output and gradInput" in {
-    torchCheck()
+    
 
     val seed = 100
     RNG.setSeed(seed)
@@ -114,8 +114,7 @@ class SpatialBatchNormalizationSpec extends TorchSpec {
   }
 
   "A SpatialBatchNormalization evaluating" should "generate correct output" in {
-    torchCheck()
-
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -198,7 +197,6 @@ class SpatialBatchNormalizationSpec extends TorchSpec {
 
   "SpatialBatchNormalization module in batch mode" should "be good in gradient check " +
     "for input" in {
-    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
     val sbn = new SpatialBatchNormalization[Double](3, 1e-3)
@@ -210,7 +208,6 @@ class SpatialBatchNormalizationSpec extends TorchSpec {
 
   "SpatialBatchNormalization module in batch mode" should "be good in gradient check " +
     "for weight" in {
-    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
     val sbn = new SpatialBatchNormalization[Double](3, 1e-3)

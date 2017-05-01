@@ -24,7 +24,6 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class MarginRankingCriterionSpec extends TorchSpec {
     "A MarginRankingCriterion " should "generate correct output and grad with only value" in {
-    torchCheck()
     val mse = new MarginRankingCriterion[Double]()
 
     val input1 = Tensor[Double](5).apply1(e => Random.nextDouble())
@@ -61,7 +60,7 @@ class MarginRankingCriterionSpec extends TorchSpec {
   }
 
   "A MarginRankingCriterion " should "generate correct output and grad with Tensor target" in {
-    torchCheck()
+    
     val mse = new MarginRankingCriterion[Double]()
 
     val input1 = Tensor[Double](5).apply1(e => Random.nextDouble())

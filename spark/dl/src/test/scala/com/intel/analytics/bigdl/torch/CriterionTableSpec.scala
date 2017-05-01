@@ -26,7 +26,6 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class CriterionTableSpec extends TorchSpec {
     "A CriterionTable " should "generate correct output and grad" in {
-    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 

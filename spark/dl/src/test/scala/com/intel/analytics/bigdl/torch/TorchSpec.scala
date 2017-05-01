@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 package com.intel.analytics.bigdl.torch
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
+import org.scalatest.{BeforeAndAfter, BeforeAndAfterAll, FlatSpec, Matchers}
 
-class TorchSpec extends FlatSpec with BeforeAndAfter with Matchers {
-  def torchCheck(): Unit = {
+class TorchSpec extends FlatSpec with BeforeAndAfter with BeforeAndAfterAll with Matchers {
+  override def beforeAll() {
     if (!TH.hasTorch()) {
       cancel("Torch is not installed")
     }
   }
-
 }

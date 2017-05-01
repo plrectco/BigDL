@@ -23,7 +23,7 @@ import com.intel.analytics.bigdl.utils.{RandomGenerator, T}
 @com.intel.analytics.bigdl.tags.Serial
 class AdagradSpec extends TorchSpec {
     "Adagrad with weightDecay" should "works fine" in {
-    torchCheck()
+    
     RandomGenerator.RNG.setSeed(10)
     val grad = Tensor[Float](10).rand()
     val param = Tensor[Float](10).rand()

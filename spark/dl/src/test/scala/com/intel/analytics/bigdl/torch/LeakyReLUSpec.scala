@@ -25,7 +25,7 @@ class LeakyReLUSpec  extends TorchSpec {
     def random(): Double = RandomGenerator.RNG.normal(-10, 10)
 
   "A LeakyReLU Module " should "generate correct output and grad not inplace when train = true" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -58,7 +58,6 @@ class LeakyReLUSpec  extends TorchSpec {
   }
 
   "A LeakyReLU Module " should "generate correct output and grad inplace when train = true" in {
-    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 

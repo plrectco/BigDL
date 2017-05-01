@@ -24,7 +24,6 @@ import scala.math._
 @com.intel.analytics.bigdl.tags.Serial
 class MSECriterionSpec extends TorchSpec {
     "A MSE Criterion " should "generate correct output and grad" in {
-    torchCheck()
     val mse = new MSECriterion[Double]
     val input = Tensor[Double](2, 2, 2)
     input(Array(1, 1, 1)) = 0.17503996845335

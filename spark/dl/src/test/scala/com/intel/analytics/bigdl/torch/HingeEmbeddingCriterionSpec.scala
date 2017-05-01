@@ -22,7 +22,6 @@ import com.intel.analytics.bigdl.utils.RandomGenerator
 @com.intel.analytics.bigdl.tags.Serial
 class HingeEmbeddingCriterionSpec extends TorchSpec {
     "A HingeEmbeddingCriterion" should "generate correct output and grad" in {
-    torchCheck()
     val module = new HingeEmbeddingCriterion[Double](0.6)
 
     val input = Tensor[Double](10).apply1(x => RandomGenerator.RNG.uniform(0, 2))

@@ -26,7 +26,6 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class CSubTableSpec extends TorchSpec {
     "A CDivTable Module" should "generate correct output and grad" in {
-    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
     val module = new CSubTable[Double]()

@@ -25,7 +25,7 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class ParallelCriterionSpec extends TorchSpec {
     "A ParallelCriterion " should "generate correct output and grad" in {
-    torchCheck()
+    
     val seed = 100
     Random.setSeed(seed)
 

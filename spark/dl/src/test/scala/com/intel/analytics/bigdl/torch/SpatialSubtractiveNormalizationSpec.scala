@@ -26,7 +26,6 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class SpatialSubtractiveNormalizationSpec extends TorchSpec {
     "A SpatialSubtractiveNormalization 3D input" should "generate correct output and grad" in {
-    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 
@@ -64,7 +63,6 @@ class SpatialSubtractiveNormalizationSpec extends TorchSpec {
   }
 
   "A SpatialSubtractiveNormalization" should "generate correct output and grad" in {
-    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 
@@ -102,7 +100,6 @@ class SpatialSubtractiveNormalizationSpec extends TorchSpec {
   }
 
   "A SpatialSubtractiveNormalization(4)" should "generate correct output and grad" in {
-    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
     Random.setSeed(100)
@@ -141,7 +138,7 @@ class SpatialSubtractiveNormalizationSpec extends TorchSpec {
   }
 
   "SpatialSubtractiveNormalization(4, kernel)" should "generate correct output and grad" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 

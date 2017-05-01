@@ -25,7 +25,7 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class NarrowTableSpec extends TorchSpec {
     "A NarrowTable Module " should "generate correct output and grad" in {
-    torchCheck()
+    
     val module = new NarrowTable[Double](1, 2)
 
     val input = T()
@@ -71,7 +71,7 @@ class NarrowTableSpec extends TorchSpec {
   }
 
   "A NarrowTable Module with negative length" should "generate correct output and grad" in {
-    torchCheck()
+    
     val module = new NarrowTable[Double](2, -2)
 
     val input = T()

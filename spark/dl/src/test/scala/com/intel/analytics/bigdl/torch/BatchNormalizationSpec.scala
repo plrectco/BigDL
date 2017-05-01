@@ -27,7 +27,7 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class BatchNormalizationSpec extends TorchSpec {
     "A SpatialBatchNormalization" should "generate correct output and gradInput" in {
-    torchCheck()
+    
 
     val seed = 100
     RNG.setSeed(seed)
@@ -116,8 +116,7 @@ class BatchNormalizationSpec extends TorchSpec {
   }
 
   "A SpatialBatchNormalization evaluating" should "generate correct output" in {
-    torchCheck()
-
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -199,7 +198,7 @@ class BatchNormalizationSpec extends TorchSpec {
 
   "A SpatialBatchNormalization forward backward twice" should
     "generate correct output and gradInput" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -263,7 +262,7 @@ class BatchNormalizationSpec extends TorchSpec {
   }
 
   "BatchNormalization module in batch mode" should "be good in gradient check for input" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
     val sbn = new BatchNormalization[Double](3, 1e-3)
@@ -274,7 +273,6 @@ class BatchNormalizationSpec extends TorchSpec {
   }
 
   "BatchNormalization module in batch mode" should "be good in gradient check for weight" in {
-    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
     val sbn = new BatchNormalization[Double](3, 1e-3)
@@ -285,7 +283,7 @@ class BatchNormalizationSpec extends TorchSpec {
   }
 
   "BatchNormalization updateGradientInput" should "generate correct output and gradInput" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -343,7 +341,7 @@ class BatchNormalizationSpec extends TorchSpec {
   }
 
   "BatchNormalization updateGradientInput and acc" should "generate correct result" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -403,7 +401,7 @@ class BatchNormalizationSpec extends TorchSpec {
   }
 
   "BatchNormalization affine = false" should "generate correct result" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 

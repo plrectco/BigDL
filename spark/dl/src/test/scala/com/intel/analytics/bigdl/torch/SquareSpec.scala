@@ -24,7 +24,6 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class SquareSpec extends TorchSpec {
     "A Square 1D input" should "generate correct output and grad" in {
-    torchCheck()
     val layer = new Square[Double]()
     val input = Tensor[Double](10)
     input.apply1(_ => Random.nextDouble())
@@ -53,7 +52,7 @@ class SquareSpec extends TorchSpec {
   }
 
   "A Square 2D input" should "generate correct output and grad" in {
-    torchCheck()
+    
     val layer = new Square[Double]()
     val input = Tensor[Double](3, 5)
     input.apply1(_ => Random.nextDouble())
@@ -82,7 +81,6 @@ class SquareSpec extends TorchSpec {
   }
 
   "A Square 3D input" should "generate correct output and grad" in {
-    torchCheck()
     val layer = new Square[Double]()
     val input = Tensor[Double](4, 6, 6)
     input.apply1(_ => Random.nextDouble())
@@ -111,7 +109,7 @@ class SquareSpec extends TorchSpec {
   }
 
   "A Square 4D input" should "generate correct output and grad" in {
-    torchCheck()
+    
     val layer = new Square[Double]()
     val input = Tensor[Double](3, 5, 6, 6)
     input.apply1(_ => Random.nextDouble())

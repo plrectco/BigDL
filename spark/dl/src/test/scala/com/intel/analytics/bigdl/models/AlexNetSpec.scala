@@ -32,7 +32,7 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class AlexNetSpec extends TorchSpec {
   "AlexNet float" should "generate correct output" in {
-    torchCheck()
+
 
     Random.setSeed(1)
     val input = Tensor[Double](8, 3, 224, 224).apply1(e => Random.nextDouble())
@@ -188,7 +188,7 @@ gradInput = model.gradInput
   }
 
   "AlexNet Float save to torch" should "generate correct output" in {
-    torchCheck()
+     
 
     Random.setSeed(1)
     val input = Tensor[Float](8, 3, 224, 224).apply1(e => Random.nextFloat())

@@ -30,8 +30,6 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class InceptionSpec extends TorchSpec {
   "Inception+bn" should "generate correct output" in {
-    torchCheck()
-
     Random.setSeed(3)
     val input = Tensor[Double](4, 3, 224, 224).apply1(e => Random.nextDouble())
     val labels = Tensor[Double](4).apply1(e => Random.nextInt(1000))
@@ -211,8 +209,6 @@ class InceptionSpec extends TorchSpec {
   }
 
   "Inception" should "generate correct output" in {
-    torchCheck()
-
     Random.setSeed(3)
     val input = Tensor[Double](4, 3, 224, 224).apply1(e => Random.nextDouble())
     val labels = Tensor[Double](4).apply1(e => Random.nextInt(1000))
@@ -412,8 +408,6 @@ class InceptionSpec extends TorchSpec {
   }
 
   "load torch's Inception+bn" should "generate correct output" in {
-    torchCheck()
-
     Random.setSeed(3)
     val input = Tensor[Double](4, 3, 224, 224).apply1(e => Random.nextDouble())
     val labels = Tensor[Double](4).apply1(e => Random.nextInt(1000))
@@ -596,8 +590,6 @@ class InceptionSpec extends TorchSpec {
   }
 
   "load torch's Inception+bn float version" should "generate correct output" in {
-    torchCheck()
-
     Random.setSeed(3)
     val input = Tensor[Float](4, 3, 224, 224).apply1(e => Random.nextFloat())
     val labels = Tensor[Float](4).apply1(e => Random.nextInt(1000))

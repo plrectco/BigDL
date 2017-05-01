@@ -27,7 +27,7 @@ import com.intel.analytics.bigdl._
 @com.intel.analytics.bigdl.tags.Serial
 class ReLUSpec extends TorchSpec {
     "A ReLU Module " should "generate correct output and grad" in {
-    torchCheck()
+    
     val module = new ReLU[Double]()
     val input = Tensor[Double](2, 2, 2)
     input(Array(1, 1, 1)) = -0.97008799016476
@@ -76,7 +76,6 @@ class ReLUSpec extends TorchSpec {
   }
 
   "ReLU module" should "be good in gradient check for input" in {
-    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
     val layer = new ReLU[Double]()

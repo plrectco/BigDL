@@ -24,7 +24,6 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class PairwiseDistanceSpec extends TorchSpec {
     "A PairwiseDistance with one dimension input" should "generate correct output and grad" in {
-    torchCheck()
     val seed = 100
     Random.setSeed(seed)
 
@@ -64,7 +63,6 @@ class PairwiseDistanceSpec extends TorchSpec {
   }
 
   "A PairwiseDistance with two dimension input" should "generate correct output and grad" in {
-    torchCheck()
     val seed = 100
     Random.setSeed(seed)
 

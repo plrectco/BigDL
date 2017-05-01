@@ -25,7 +25,7 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class SpatialContrastiveNormalizationSpec extends TorchSpec {
     "A SpatialContrastiveNormalization 3D input" should "generate correct output and grad" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -63,7 +63,7 @@ class SpatialContrastiveNormalizationSpec extends TorchSpec {
   }
 
   "A SpatialContrastiveNormalization" should "generate correct output and grad" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -101,7 +101,7 @@ class SpatialContrastiveNormalizationSpec extends TorchSpec {
   }
 
   "A SpatialContrastiveNormalization(4)" should "generate correct output and grad" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -139,7 +139,7 @@ class SpatialContrastiveNormalizationSpec extends TorchSpec {
   }
 
   "A SpatialContrastiveNormalization(4, kernel)" should "generate correct output and grad" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -176,7 +176,6 @@ class SpatialContrastiveNormalizationSpec extends TorchSpec {
 
   "SpatialContrastiveNormalization(4, kernel) with 3D input" should
     "generate correct output and grad" in {
-    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 
@@ -213,7 +212,7 @@ class SpatialContrastiveNormalizationSpec extends TorchSpec {
 
   "A SpatialContrastiveNormalization(1, gaussian) whit 3D input" should
     "generate correct output and grad" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 

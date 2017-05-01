@@ -24,7 +24,6 @@ class GradientReversalSpec  extends TorchSpec {
     def randomn(): Double = RandomGenerator.RNG.normal(-10, 10)
 
   "An GradientReversal" should "generate correct output and grad" in {
-    torchCheck()
     val layer = new GradientReversal[Double]()
     val input = Tensor[Double](2, 2, 2)
     input.apply1(x => randomn())

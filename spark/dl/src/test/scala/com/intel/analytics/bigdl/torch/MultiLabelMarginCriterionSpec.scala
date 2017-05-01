@@ -23,7 +23,7 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class MultiLabelMarginCriterionSpec extends TorchSpec {
   "A MultiLabelMarginCriterion " should "generate correct output and grad whith one dimension" in {
-    torchCheck()
+    
     val layer = new MultiLabelMarginCriterion[Double]()
     val input = Tensor[Double](4).apply1(e => Random.nextDouble())
     val target = Tensor[Double](4)
@@ -56,8 +56,7 @@ class MultiLabelMarginCriterionSpec extends TorchSpec {
   }
 
   "A MultiLabelMarginCriterion " should "generate correct output and grad with two dimensions" in {
-    torchCheck()
-
+    
     val layer = new MultiLabelMarginCriterion[Double]()
     val input = Tensor[Double](2, 4).apply1(e => Random.nextDouble())
     val target = Tensor[Double](2, 4)

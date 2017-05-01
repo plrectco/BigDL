@@ -24,7 +24,6 @@ class HardShrinkSpec extends TorchSpec {
     def randomn(): Double = RandomGenerator.RNG.normal(-10, 10)
 
   "An HardShrink" should "generate correct output and grad" in {
-    torchCheck()
     val layer = new HardShrink[Double](5)
     val input = Tensor[Double](2, 2, 2)
     input.apply1(x => randomn())

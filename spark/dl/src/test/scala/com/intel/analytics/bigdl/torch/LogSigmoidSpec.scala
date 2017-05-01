@@ -23,7 +23,7 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class LogSigmoidSpec extends TorchSpec {
     "A LogSigmoid Module " should "generate correct output and grad" in {
-    torchCheck()
+    
     val module = new LogSigmoid[Double]()
     Random.setSeed(100)
     val input = Tensor[Double](4, 10).apply1(e => Random.nextDouble())

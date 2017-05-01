@@ -20,7 +20,6 @@ import com.intel.analytics.bigdl.tensor.Tensor
 @com.intel.analytics.bigdl.tags.Serial
 class TensorSpec extends TorchSpec {
     "Read empty LongTensor" should "generate correct output" in {
-    torchCheck()
     val empty = Tensor[Double]()
 
     val code = "output = torch.LongTensor()\n"
@@ -32,7 +31,6 @@ class TensorSpec extends TorchSpec {
   }
 
   "Read LongTensor" should "generate correct output" in {
-    torchCheck()
     val tensor = Tensor[Double](1, 2, 3)
 
     val code = "output = torch.LongTensor(1, 2, 3)\n" +

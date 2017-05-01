@@ -26,7 +26,6 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class CMulTableSpec extends TorchSpec {
     "A CMulTable Module" should "generate correct output and grad" in {
-    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
     val module = new CMulTable[Double]()

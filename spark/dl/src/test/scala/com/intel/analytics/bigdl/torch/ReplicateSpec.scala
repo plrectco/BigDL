@@ -24,7 +24,6 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class ReplicateSpec extends TorchSpec {
     "A Replicate(3)" should "generate correct output and grad" in {
-    torchCheck()
     val layer = new Replicate[Double](3)
     val input = Tensor[Double](10)
     input.apply1(_ => Random.nextDouble())
@@ -53,7 +52,7 @@ class ReplicateSpec extends TorchSpec {
   }
 
   "A Replicate(3, 2)" should "generate correct output and grad" in {
-    torchCheck()
+    
     val layer = new Replicate[Double](3, 2)
     val input = Tensor[Double](3, 5)
     input.apply1(_ => Random.nextDouble())
@@ -82,7 +81,6 @@ class ReplicateSpec extends TorchSpec {
   }
 
   "A Replicate(3, 3, 3)" should "generate correct output and grad" in {
-    torchCheck()
     val layer = new Replicate[Double](3, 3, 3)
     val input = Tensor[Double](4, 6)
     input.apply1(_ => Random.nextDouble())

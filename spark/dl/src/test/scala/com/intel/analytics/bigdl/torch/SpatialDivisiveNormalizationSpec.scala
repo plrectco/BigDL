@@ -25,7 +25,7 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class SpatialDivisiveNormalizationSpec extends TorchSpec {
     "A SpatialDivisiveNormalization 3D input" should "generate correct output and grad" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -63,7 +63,7 @@ class SpatialDivisiveNormalizationSpec extends TorchSpec {
   }
 
   "A SpatialDivisiveNormalization" should "generate correct output and grad" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -101,7 +101,7 @@ class SpatialDivisiveNormalizationSpec extends TorchSpec {
   }
 
   "A SpatialDivisiveNormalization(4)" should "generate correct output and grad" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -139,7 +139,7 @@ class SpatialDivisiveNormalizationSpec extends TorchSpec {
   }
 
   "SpatialDivisiveNormalization(4, kernel)" should "generate correct output and grad" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 

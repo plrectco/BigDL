@@ -22,7 +22,6 @@ import com.intel.analytics.bigdl.tensor.Tensor
 class MultiLabelSoftMarginCriterionSpec extends TorchSpec {
     "A MultiLabelSoftMarginCriterion Criterion " should
     "generate correct output and grad" in {
-    torchCheck()
     val criterion = new MultiLabelSoftMarginCriterion[Double]()
 
     val input = Tensor[Double](3)

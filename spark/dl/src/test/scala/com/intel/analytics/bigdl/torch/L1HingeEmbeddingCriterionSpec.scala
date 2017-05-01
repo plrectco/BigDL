@@ -26,7 +26,6 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class L1HingeEmbeddingCriterionSpec extends TorchSpec {
     "A L1HingeEmbeddingCriterion" should "generate correct output and grad with y == 1 " in {
-    torchCheck()
     val seed = 2
     RNG.setSeed(seed)
     val module = new L1HingeEmbeddingCriterion[Double](0.6)
@@ -63,7 +62,7 @@ class L1HingeEmbeddingCriterionSpec extends TorchSpec {
   }
 
   "A L1HingeEmbeddingCriterion" should "generate correct output and grad with y == -1 " in {
-    torchCheck()
+    
     val seed = 2
     RNG.setSeed(seed)
     val module = new L1HingeEmbeddingCriterion[Double](0.6)

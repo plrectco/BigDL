@@ -23,7 +23,7 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class SoftMarginCriterionSpec extends TorchSpec {
     "A SoftMarginCriterion Module " should "generate correct output and grad" in {
-    torchCheck()
+    
     val module = new SoftMarginCriterion[Double]()
     Random.setSeed(100)
     val input = Tensor[Double](4, 10).apply1(e => Random.nextDouble())
@@ -53,7 +53,7 @@ class SoftMarginCriterionSpec extends TorchSpec {
 
   "A SoftMarginCriterion Module with setting sizeAverage to false" should "generate " +
     "correct output and grad" in {
-    torchCheck()
+    
     val module = new SoftMarginCriterion[Double](false)
     Random.setSeed(100)
     val input = Tensor[Double](4, 10).apply1(e => Random.nextDouble())

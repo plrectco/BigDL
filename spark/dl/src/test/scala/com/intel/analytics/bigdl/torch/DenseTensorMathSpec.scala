@@ -24,7 +24,6 @@ import scala.sys.process._
 class DenseTensorMathSpec extends TorchSpec {
 
     "matrix + real" should "return correct value" in {
-    torchCheck()
     val a = Tensor[Double](200, 200).rand()
     val b = 100
     val code = "b = 100\noutcome = a + b"
@@ -46,7 +45,6 @@ class DenseTensorMathSpec extends TorchSpec {
   }
 
   "matrix + matrix" should "return correct value" in {
-    torchCheck()
     val a = Tensor[Double](200, 200).rand()
     val b = Tensor[Double](200, 200).rand()
     val code = "outcome = a + b"
@@ -68,7 +66,6 @@ class DenseTensorMathSpec extends TorchSpec {
   }
 
   "matrix - real" should "return correct value" in {
-    torchCheck()
     val a = Tensor[Double](200, 200).rand()
     val b = 100
     val code = "b = 100\noutcome = a - b"
@@ -90,7 +87,6 @@ class DenseTensorMathSpec extends TorchSpec {
   }
 
   "matrix - matrix" should "return correct value" in {
-    torchCheck()
     val a = Tensor[Double](200, 200).rand()
     val b = Tensor[Double](200, 200).rand()
     val code = "outcome = a - b"
@@ -112,7 +108,6 @@ class DenseTensorMathSpec extends TorchSpec {
   }
 
   "negative matrix" should "return correct value" in {
-    torchCheck()
     val a = Tensor[Double](200, 200).rand()
     val code = "outcome = -a"
 
@@ -133,7 +128,7 @@ class DenseTensorMathSpec extends TorchSpec {
   }
 
   "matrix / real" should "return correct value" in {
-    torchCheck()
+    
     val a = Tensor[Double](200, 200).rand()
     val b = 100
     val code = "b = 100\noutcome = a / b"
@@ -155,7 +150,7 @@ class DenseTensorMathSpec extends TorchSpec {
   }
 
   "matrix ./ matrix" should "return correct value" in {
-    torchCheck()
+    
     val a = Tensor[Double](200, 200).rand()
     val b = Tensor[Double](200, 200).rand()
     val code = "outcome = a:cdiv(b)"
@@ -177,7 +172,7 @@ class DenseTensorMathSpec extends TorchSpec {
   }
 
   "matrix * real" should "return correct value" in {
-    torchCheck()
+    
     val a = Tensor[Double](200, 200).rand()
     val b = 100
     val code = "b = 100\noutcome = a * b"
@@ -200,7 +195,6 @@ class DenseTensorMathSpec extends TorchSpec {
 
 
   "matrix * matrix" should "return correct value" in {
-    torchCheck()
     val a = Tensor[Double](200, 200).rand()
     val b = Tensor[Double](200, 200).rand()
     val code = "outcome = a * b"
@@ -222,7 +216,6 @@ class DenseTensorMathSpec extends TorchSpec {
   }
 
   "matrix sumAll" should "return correct value" in {
-    torchCheck()
     val a = Tensor[Double](200, 200).rand()
     val code = "outcome = a:sum()"
 
@@ -243,7 +236,7 @@ class DenseTensorMathSpec extends TorchSpec {
   }
 
   "matrix sumDimension" should "return correct value" in {
-    torchCheck()
+    
     val a = Tensor[Double](200, 200).rand()
     val code = "outcome = a:sum(1)"
 
@@ -264,7 +257,6 @@ class DenseTensorMathSpec extends TorchSpec {
   }
 
   "matrix max" should "return correct value" in {
-    torchCheck()
     val a = Tensor[Double](200, 200).rand()
     val code = "outcome = a:max()"
 
@@ -285,7 +277,7 @@ class DenseTensorMathSpec extends TorchSpec {
   }
 
   "matrix conv2" should "return correct value" in {
-    torchCheck()
+    
     val a = Tensor[Double](200, 200).rand()
     val b = Tensor[Double](200, 200).rand()
     val code = "outcome = torch.conv2(a, b, 'V')"
@@ -307,7 +299,7 @@ class DenseTensorMathSpec extends TorchSpec {
   }
 
   "matrix xcorr2" should "return correct value" in {
-    torchCheck()
+    
     val a = Tensor[Double](200, 200).rand()
     val b = Tensor[Double](200, 200).rand()
     val code = "outcome = torch.xcorr2(a, b, 'V')"
@@ -329,7 +321,7 @@ class DenseTensorMathSpec extends TorchSpec {
   }
 
   "matrix add" should "return correct value" in {
-    torchCheck()
+    
     val a = Tensor[Double](200, 200).rand()
     val b = Tensor[Double](200, 200).rand()
     val m = 20
@@ -351,7 +343,7 @@ class DenseTensorMathSpec extends TorchSpec {
   }
 
   "matrix cmul" should "return correct value" in {
-    torchCheck()
+    
     val a = Tensor[Double](200, 200).rand()
     val b = Tensor[Double](200, 200).rand()
     val code = "outcome = a:cmul(b)"
@@ -372,7 +364,6 @@ class DenseTensorMathSpec extends TorchSpec {
   }
 
   "matrix mul" should "return correct value" in {
-    torchCheck()
     val a = Tensor[Double](200, 200).rand()
     val b = Tensor[Double](200, 200).rand()
     val m = 20
@@ -395,7 +386,7 @@ class DenseTensorMathSpec extends TorchSpec {
   }
 
   "matrix div" should "return correct value" in {
-    torchCheck()
+    
     val a = Tensor[Double](200, 200).rand()
     val b = 20
     val code = "b = 20\noutcome = a:div(b)"
@@ -417,7 +408,7 @@ class DenseTensorMathSpec extends TorchSpec {
   }
 
   "addmm" should "return correct value" in {
-    torchCheck()
+    
 
     val a = Tensor[Double](200, 200).rand()
     val b = Tensor[Double](200, 200).rand()
@@ -444,8 +435,7 @@ class DenseTensorMathSpec extends TorchSpec {
   }
 
   "addr" should "return correct value" in {
-    torchCheck()
-
+    
     val a = Tensor[Double](200).rand()
     val b = Tensor[Double](200).rand()
 

@@ -25,7 +25,7 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class SpatialConvolutionMapSpec extends TorchSpec {
     "A SpatialConvolution" should "generate correct output" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -63,7 +63,7 @@ class SpatialConvolutionMapSpec extends TorchSpec {
   }
 
   "A SpatialConvolution 3D input" should "generate correct output" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 

@@ -26,7 +26,6 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class SpatialCrossMapLRNSpec extends TorchSpec {
     "A SpatialCrossMapLRN Layer" should "generate correct output" in {
-    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 
@@ -45,7 +44,7 @@ class SpatialCrossMapLRNSpec extends TorchSpec {
   }
 
   it should "generate correct output when feature map number is large" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -64,7 +63,6 @@ class SpatialCrossMapLRNSpec extends TorchSpec {
   }
 
   it should "generate correct gradInput" in {
-    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 
@@ -87,7 +85,7 @@ class SpatialCrossMapLRNSpec extends TorchSpec {
   }
 
   it should "generate correct gradInput when feature map number is large" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -110,7 +108,6 @@ class SpatialCrossMapLRNSpec extends TorchSpec {
   }
 
   "SpatialCrossMapLRN module" should "be good in gradient check for input" in {
-    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 

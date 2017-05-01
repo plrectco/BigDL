@@ -25,7 +25,7 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class SelectTableSpec extends TorchSpec {
     "A SelectTable selects a tensor as an output" should "generate correct output and grad" in {
-    torchCheck()
+    
     val seed = 100
     Random.setSeed(seed)
 
@@ -78,7 +78,6 @@ class SelectTableSpec extends TorchSpec {
   }
 
   "A SelectTable selects a table as an output" should "generate correct output and grad" in {
-    torchCheck()
     val seed = 100
     Random.setSeed(seed)
 

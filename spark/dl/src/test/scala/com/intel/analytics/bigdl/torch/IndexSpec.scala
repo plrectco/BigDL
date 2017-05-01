@@ -26,7 +26,6 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class IndexSpec extends TorchSpec {
     "A Index " should "generate correct output and grad with one dimension" in {
-    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 
@@ -69,7 +68,7 @@ class IndexSpec extends TorchSpec {
   }
 
   "A Index " should "generate correct output and grad with two dimension" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 

@@ -21,7 +21,7 @@ import com.intel.analytics.bigdl.tensor.Tensor
 @com.intel.analytics.bigdl.tags.Serial
 class AbsSpec extends TorchSpec {
     "A Abs Module " should "generate correct output and grad" in {
-    torchCheck()
+    
     val module = new Abs[Double]
     val input = Tensor[Double](2, 1, 2)
     input(Array(1, 1, 1)) = 21

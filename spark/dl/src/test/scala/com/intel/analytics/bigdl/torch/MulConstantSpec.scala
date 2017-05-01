@@ -23,7 +23,7 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class MulConstantSpec extends TorchSpec {
     "A MulConstant Module " should "generate correct output and grad" in {
-    torchCheck()
+    
     val module = new MulConstant[Double](10)
     val input = Tensor[Double](1, 5).apply1(e => Random.nextDouble())
     val gradOutput = Tensor[Double](1, 5).apply1(e => Random.nextDouble())

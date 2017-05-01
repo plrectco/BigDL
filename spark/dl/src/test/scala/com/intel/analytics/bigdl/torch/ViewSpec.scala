@@ -27,7 +27,7 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class ViewSpec extends TorchSpec {
     "A View Container" should "generate correct output and grad" in {
-    torchCheck()
+    
     val module = new View[Double](2, 8)
 
     val input = Tensor[Double](4, 4).randn()
@@ -60,7 +60,6 @@ class ViewSpec extends TorchSpec {
   }
 
   "View module" should "be good in gradient check for input" in {
-    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
     val layer = new View[Double](2, 8)

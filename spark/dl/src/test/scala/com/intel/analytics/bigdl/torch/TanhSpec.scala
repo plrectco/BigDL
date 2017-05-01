@@ -24,7 +24,6 @@ import scala.math._
 @com.intel.analytics.bigdl.tags.Serial
 class TanhSpec extends TorchSpec {
     "A Tanh Module " should "generate correct output and grad" in {
-    torchCheck()
     val module = new Tanh[Double]()
     val input = Tensor[Double](2, 2, 2)
     input(Array(1, 1, 1)) = -0.17020166106522

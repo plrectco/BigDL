@@ -27,7 +27,7 @@ import com.intel.analytics.bigdl._
 @com.intel.analytics.bigdl.tags.Serial
 class SpatialAveragePoolingSpec extends TorchSpec {
     "A SpatialAveragePooling" should "generate correct output and gradInput" in {
-    torchCheck()
+    
     val module = new SpatialAveragePooling[Double](3, 2, 2, 1)
     val input = Tensor[Double](1, 4, 3)
     input(Array(1, 1, 1)) = 0.25434372201562
@@ -77,7 +77,7 @@ class SpatialAveragePoolingSpec extends TorchSpec {
   }
 
   "A SpatialAveragePooling" should "be good in gradient checker for input" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
     val layer = new SpatialAveragePooling[Double](3, 2, 2, 1)

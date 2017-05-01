@@ -24,7 +24,6 @@ import scala.math._
 @com.intel.analytics.bigdl.tags.Serial
 class ReshapeSpec extends TorchSpec {
     "A Reshape Module " should "generate correct output and grad" in {
-    torchCheck()
     val module = new Reshape[Double](Array(3, 2))
 
     val input = Tensor[Double](4, 1, 6)

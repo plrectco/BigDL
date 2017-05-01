@@ -23,7 +23,7 @@ import scala.math._
 @com.intel.analytics.bigdl.tags.Serial
 class ClampSpec extends TorchSpec {
     "A Clamp Module " should "generate correct output and grad" in {
-    torchCheck()
+    
     val module = new Clamp[Double](-10, 10)
     val input = Tensor[Double](2, 2, 2)
     input(Array(1, 1, 1)) = -0.97008799016476

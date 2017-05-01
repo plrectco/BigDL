@@ -25,7 +25,7 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class BottleSpec extends TorchSpec {
     "A Bottle Container" should "generate correct output and grad" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
     val module = new Bottle[Double](new Linear[Double](10, 2), 2, 2)

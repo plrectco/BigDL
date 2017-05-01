@@ -24,7 +24,6 @@ import scala.math._
 @com.intel.analytics.bigdl.tags.Serial
 class ModuleSpec extends TorchSpec {
     "getParameter" should "behave correctly" in {
-    torchCheck()
     val module = new Sequential[Double]
     val subModule1 = new Linear[Double](2, 3)
     val subModule2 = new Linear[Double](4, 5)

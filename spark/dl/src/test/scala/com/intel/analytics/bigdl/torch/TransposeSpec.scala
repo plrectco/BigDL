@@ -23,7 +23,7 @@ import scala.math._
 
 class TransposeSpec extends TorchSpec {
     "A Transpose Module " should "generate correct output and grad" in {
-    torchCheck()
+    
     val module = new Transpose[Double](Array((1, 3)))
     val input = Tensor[Double](2, 2, 2)
     input(Array(1, 1, 1)) = -0.17020166106522
@@ -72,7 +72,6 @@ class TransposeSpec extends TorchSpec {
   }
 
   "A Transpose Module with mutiple tuples" should "generate correct output and grad" in {
-    torchCheck()
     val module = new Transpose[Double](Array((1, 3), (2, 3)))
     val input = Tensor[Double](2, 2, 2)
     input(Array(1, 1, 1)) = -0.17020166106522

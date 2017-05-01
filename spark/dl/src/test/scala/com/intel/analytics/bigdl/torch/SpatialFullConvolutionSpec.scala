@@ -26,7 +26,6 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class SpatialFullConvolutionSpec extends TorchSpec {
     "A SpatialFullConvolution" should "generate correct output" in {
-    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 
@@ -68,7 +67,6 @@ class SpatialFullConvolutionSpec extends TorchSpec {
   }
 
   "A SpatialFullConvolution on rectangle input" should "generate correct output" in {
-    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 
@@ -109,7 +107,7 @@ class SpatialFullConvolutionSpec extends TorchSpec {
   }
 
   "A SpatialFullConvolution" should "generate correct output and grad" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -171,7 +169,7 @@ class SpatialFullConvolutionSpec extends TorchSpec {
   }
 
   "A SpatialFullConvolution" should "generate correct output and grad with 3D input" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -233,7 +231,7 @@ class SpatialFullConvolutionSpec extends TorchSpec {
   }
 
   "A SpatialFullConvolution noBias" should "generate correct output and grad with 3D input" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -292,7 +290,6 @@ class SpatialFullConvolutionSpec extends TorchSpec {
   }
 
   "A SpatialFullConvolution" should "generate correct output and grad with table input" in {
-    torchCheck()
     val seed = 100
     RNG.setSeed(seed)
 
@@ -359,7 +356,7 @@ class SpatialFullConvolutionSpec extends TorchSpec {
   }
 
   "A SpatialFullConvolution OneToOne" should "generate correct output and grad" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -415,7 +412,7 @@ class SpatialFullConvolutionSpec extends TorchSpec {
   }
 
   "A SpatialFullConvolution with different input" should "generate correct output and grad" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 

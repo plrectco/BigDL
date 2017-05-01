@@ -22,7 +22,6 @@ import com.intel.analytics.bigdl.tensor.Tensor
 @com.intel.analytics.bigdl.tags.Serial
 class ExpSpec extends TorchSpec {
     "An Exp" should "generate correct output and grad" in {
-    torchCheck()
     val layer = new Exp[Double]()
     val input = Tensor[Double](2, 2, 2)
     input(Array(1, 1, 1)) = 1

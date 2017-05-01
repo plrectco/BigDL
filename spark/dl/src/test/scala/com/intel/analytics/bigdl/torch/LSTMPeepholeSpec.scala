@@ -28,7 +28,7 @@ import scala.sys.process._
 
 @com.intel.analytics.bigdl.tags.Parallel
 class LSTMPeepholeSpec  extends TorchSpec {
-  override def torchCheck(): Unit = {
+  override def beforeAll() {
     if (!TH.hasTorch()) {
       cancel("Torch is not installed")
     }
@@ -45,7 +45,7 @@ class LSTMPeepholeSpec  extends TorchSpec {
   }
 
   "A LSTMPeepwhole " should "has same loss as torch rnn" in {
-    torchCheck()
+    
 
     import com.intel.analytics.bigdl.numeric.NumericDouble
     val hiddenSize = 4
@@ -218,8 +218,7 @@ class LSTMPeepholeSpec  extends TorchSpec {
 
 
   "A LSTMPeepwhole " should "converge" in {
-    torchCheck()
-
+    
     import com.intel.analytics.bigdl.numeric.NumericDouble
     val hiddenSize = 4
     val inputSize = 6
@@ -282,8 +281,7 @@ class LSTMPeepholeSpec  extends TorchSpec {
 
 
   "A LSTMPeepwhole " should "has same loss as torch rnn in batch mode" in {
-    torchCheck()
-
+    
     import com.intel.analytics.bigdl.numeric.NumericFloat
     val hiddenSize = 4
     val inputSize = 6
@@ -452,8 +450,7 @@ class LSTMPeepholeSpec  extends TorchSpec {
 
 
   "A LSTMPeepwhole " should "converge in batch mode" in {
-    torchCheck()
-
+    
     import com.intel.analytics.bigdl.numeric.NumericDouble
     val hiddenSize = 4
     val inputSize = 6
@@ -518,8 +515,7 @@ class LSTMPeepholeSpec  extends TorchSpec {
   }
 
   "A LSTMPeepwhole " should "perform correct gradient check" in {
-    torchCheck()
-
+    
     val hiddenSize = 4
     val inputSize = 5
     val outputSize = 5

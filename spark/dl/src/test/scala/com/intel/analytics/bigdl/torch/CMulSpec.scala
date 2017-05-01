@@ -23,7 +23,7 @@ import com.intel.analytics.bigdl.utils.RandomGenerator._
 @com.intel.analytics.bigdl.tags.Serial
 class CMulSpec extends TorchSpec {
     "A CMul(5, 1)" should "generate correct output and grad" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -61,7 +61,7 @@ class CMulSpec extends TorchSpec {
   }
 
   "A CMul(3)" should "generate correct output and grad" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -99,7 +99,7 @@ class CMulSpec extends TorchSpec {
   }
 
   "A CMul(3, 4)" should "generate correct output and grad" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -137,7 +137,7 @@ class CMulSpec extends TorchSpec {
   }
 
   "A CMul(1, 4, 1, 1)" should "generate correct output and grad" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 
@@ -175,7 +175,7 @@ class CMulSpec extends TorchSpec {
   }
 
   "A CMul(1, 5, 1, 1)" should "generate correct output and grad" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
 

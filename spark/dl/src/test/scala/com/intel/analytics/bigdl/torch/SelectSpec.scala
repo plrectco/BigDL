@@ -22,7 +22,6 @@ import com.intel.analytics.bigdl.utils.RandomGenerator
 @com.intel.analytics.bigdl.tags.Serial
 class SelectSpec extends TorchSpec {
     "Select(3, 5)" should "generate correct output and grad" in {
-    torchCheck()
     def randn(): Double = RandomGenerator.RNG.uniform(-10, 10)
     val layer = new Select[Double](3, 5)
     val input = Tensor[Double](5, 5, 5)

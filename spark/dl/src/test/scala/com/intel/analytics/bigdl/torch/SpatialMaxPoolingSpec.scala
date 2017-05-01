@@ -27,7 +27,7 @@ import com.intel.analytics.bigdl._
 @com.intel.analytics.bigdl.tags.Serial
 class SpatialMaxPoolingSpec extends TorchSpec {
     "A SpatialMaxPooling" should "generate correct output and gradInput" in {
-    torchCheck()
+    
     val module = new SpatialMaxPooling[Double](2, 2)
     val input = Tensor[Double](1, 3, 3)
     input(Array(1, 1, 1)) = 0.53367262030952
@@ -71,7 +71,7 @@ class SpatialMaxPoolingSpec extends TorchSpec {
   }
 
   "A SpatialMaxPooling" should "be good in gradient check for input" in {
-    torchCheck()
+    
     val seed = 100
     RNG.setSeed(seed)
     val layer = new SpatialMaxPooling[Double](2, 2)

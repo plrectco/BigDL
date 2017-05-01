@@ -24,7 +24,6 @@ import scala.collection.mutable
 @com.intel.analytics.bigdl.tags.Serial
 class JoinTableSpec extends TorchSpec {
     "A JoinTable()" should "generate correct output and grad" in {
-    torchCheck()
     def randomn(): Double = RandomGenerator.RNG.uniform(-10, 10)
     val layer = new JoinTable[Double](2, 2)
 

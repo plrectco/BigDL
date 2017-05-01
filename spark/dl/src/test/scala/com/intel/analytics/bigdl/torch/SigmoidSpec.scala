@@ -24,7 +24,6 @@ import scala.math._
 @com.intel.analytics.bigdl.tags.Serial
 class SigmoidSpec extends TorchSpec {
     "A Sigmoid Module " should "generate correct output and grad" in {
-    torchCheck()
     val module = new Sigmoid[Double]
     val input = Tensor[Double](2, 2, 2)
     input(Array(1, 1, 1)) = 0.063364277360961

@@ -23,7 +23,7 @@ import scala.util.Random
 @com.intel.analytics.bigdl.tags.Serial
 class NarrowSpec extends TorchSpec {
     "A Narrow Module " should "generate correct output and grad with length < 0" in {
-    torchCheck()
+    
     val input = Tensor[Double](9, 4, 14).apply1(e => Random.nextDouble())
     val gradOutput = Tensor[Double](5, 4, 14).apply1(e => Random.nextDouble())
 
@@ -51,7 +51,7 @@ class NarrowSpec extends TorchSpec {
   }
 
   "A Narrow Module " should "generate correct output and grad with dimension < 0" in {
-    torchCheck()
+    
     val input = Tensor[Double](3, 10, 4).apply1(e => Random.nextDouble())
     val gradOutput = Tensor[Double](3, 3, 4).apply1(e => Random.nextDouble())
 
