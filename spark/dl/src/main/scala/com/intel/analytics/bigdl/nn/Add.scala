@@ -75,7 +75,8 @@ class Add[T: ClassTag](val inputSize: Int
         gradBias.add(ev.fromType[Double](scaleB), gradOutput)
       } else {
         val gradOutputLocal = gradOutput.view(input.size(1), gradOutput.size.product/input.size(1))
-        gradBias.view(gradBias.size().product).addmv(ev.fromType[Double](scaleB), gradOutputLocal.t(), ones)
+        gradBias.view(gradBias.size().product).addmv(ev.fromType[Double](scaleB),
+          gradOutputLocal.t(), ones)
       }
     }
   }
