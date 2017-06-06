@@ -363,14 +363,14 @@ class BatchNormalization[@specialized(Float, Double) T: ClassTag](
               backwardDouble(inputData, inputOffset, inputStride, inputStride2, gradOutputData,
                 gradOutputOffset, gradOutputStride, gradOutputStride2,
                 gradInputData, gradInputOffset, gradInputStride, gradInputStride2, nInput, n,
-                ev.toType[Double](ev.fromType(scaleW)), ev.toType[Double](ev.fromType(scaleB)),
+                scaleW, scaleB,
                 gradWeightData, gradWeightOffset, gradBiasData,
                 gradBiasOffset)
             } else {
               backwardDouble(inputData, inputOffset, inputStride, inputStride2, gradOutputData,
                 gradOutputOffset, gradOutputStride, gradOutputStride2,
                 gradInputData, gradInputOffset, gradInputStride, gradInputStride2, nInput, n,
-                ev.toType[Double](ev.fromType(scaleW)), ev.toType[Double](ev.fromType(scaleB)), null, 0, null, 0)
+                scaleW, scaleB, null, 0, null, 0)
             }
           } else {
             val gradWeightDouble = theGradWeight.asInstanceOf[Tensor[Double]]
@@ -381,7 +381,7 @@ class BatchNormalization[@specialized(Float, Double) T: ClassTag](
             val gradBiasOffset = gradBiasDouble.storageOffset() - 1
             backwardDouble(inputData, inputOffset, inputStride, inputStride2, gradOutputData,
               gradOutputOffset, gradOutputStride, gradOutputStride2,
-              null, 0, 0, 0, nInput, n, ev.toType[Double](ev.fromType(scaleW)), ev.toType[Double](ev.fromType(scaleB)),
+              null, 0, 0, 0, nInput, n, scaleW, scaleB,
               gradWeightData, gradWeightOffset,
               gradBiasData, gradBiasOffset)
           }
@@ -394,7 +394,7 @@ class BatchNormalization[@specialized(Float, Double) T: ClassTag](
           backwardDouble(inputData, inputOffset, inputStride, inputStride2, gradOutputData,
             gradOutputOffset, gradOutputStride, gradOutputStride2,
             gradInputData, gradInputOffset, gradInputStride, gradInputStride2, nInput, n,
-            ev.toType[Double](ev.fromType(scaleW)), ev.toType[Double](ev.fromType(scaleB)), null, 0, null, 0)
+            scaleW, scaleB, null, 0, null, 0)
         }
 
       case FloatType =>
@@ -425,14 +425,14 @@ class BatchNormalization[@specialized(Float, Double) T: ClassTag](
               backwardFloat(inputData, inputOffset, inputStride, inputStride2, gradOutputData,
                 gradOutputOffset, gradOutputStride, gradOutputStride2,
                 gradInputData, gradInputOffset, gradInputStride, gradInputStride2, nInput, n,
-                ev.toType[Float](ev.fromType(scaleW)), ev.toType[Float](ev.fromType(scaleB)),
+                ev.toType[Float](ev.fromType[Double](scaleW)), ev.toType[Float](ev.fromType[Double](scaleB)),
                 gradWeightData, gradWeightOffset, gradBiasData,
                 gradBiasOffset)
             } else {
               backwardFloat(inputData, inputOffset, inputStride, inputStride2, gradOutputData,
                 gradOutputOffset, gradOutputStride, gradOutputStride2,
                 gradInputData, gradInputOffset, gradInputStride, gradInputStride2, nInput, n,
-                ev.toType[Float](ev.fromType(scaleW)), ev.toType[Float](ev.fromType(scaleB)), null, 0, null, 0)
+                ev.toType[Float](ev.fromType[Double](scaleW)), ev.toType[Float](ev.fromType[Double](scaleB)), null, 0, null, 0)
             }
           } else {
             val gradWeightFloat = theGradWeight.asInstanceOf[Tensor[Float]]
@@ -443,7 +443,7 @@ class BatchNormalization[@specialized(Float, Double) T: ClassTag](
             val gradBiasOffset = gradBiasFloat.storageOffset() - 1
             backwardFloat(inputData, inputOffset, inputStride, inputStride2, gradOutputData,
               gradOutputOffset, gradOutputStride, gradOutputStride2,
-              null, 0, 0, 0, nInput, n, ev.toType[Float](ev.fromType(scaleW)), ev.toType[Float](ev.fromType(scaleB)), gradWeightData, gradWeightOffset,
+              null, 0, 0, 0, nInput, n, ev.toType[Float](ev.fromType[Double](scaleW)), ev.toType[Float](ev.fromType[Double](scaleB)), gradWeightData, gradWeightOffset,
               gradBiasData, gradBiasOffset)
           }
         } else if (null != theGradInput) {
@@ -455,7 +455,7 @@ class BatchNormalization[@specialized(Float, Double) T: ClassTag](
           backwardFloat(inputData, inputOffset, inputStride, inputStride2, gradOutputData,
             gradOutputOffset, gradOutputStride, gradOutputStride2,
             gradInputData, gradInputOffset, gradInputStride, gradInputStride2, nInput, n,
-            ev.toType[Float](ev.fromType(scaleW)), ev.toType[Float](ev.fromType(scaleB)), null, 0, null, 0)
+            ev.toType[Float](ev.fromType[Double](scaleW)), ev.toType[Float](ev.fromType[Double](scaleB)), null, 0, null, 0)
         }
     }
 

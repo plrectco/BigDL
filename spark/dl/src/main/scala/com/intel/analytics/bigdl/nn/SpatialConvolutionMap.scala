@@ -232,7 +232,7 @@ class SpatialConvolutionMap[@specialized(Float, Double) T: ClassTag](
           while (n <= outputW) {
             gradOutputIndex(3) = n
             gradBias(gradBiasIndex) = ev.plus(gradBias(gradBiasIndex),
-              ev.times(ev.fromType(scaleB), gradOutput(gradOutputIndex)))
+              ev.times(ev.fromType[Double](scaleB), gradOutput(gradOutputIndex)))
             n += 1
           }
           l += 1
@@ -256,7 +256,7 @@ class SpatialConvolutionMap[@specialized(Float, Double) T: ClassTag](
 
         DenseTensorConv.validXCorr2DRevptr(gradWeight.storage(),
           gradWeight.storageOffset() - 1 + (k - 1) * weightH * weightW,
-          ev.fromType(scaleW), input.storage(),
+          ev.fromType[Double](scaleW), input.storage(),
           input.storageOffset() - 1 + (i - 1 + m * nInputPlane) * inputW * inputH,
           inputH, inputW, gradOutput.storage(),
           gradOutput.storageOffset() - 1 + (o - 1 + m * nOutputPlane) * outputW * outputH,

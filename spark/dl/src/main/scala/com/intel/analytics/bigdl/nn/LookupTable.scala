@@ -220,8 +220,8 @@ class LookupTable[T: ClassTag]
     while (i < numEle) {
       if (input_data(i + input_offset) != paddingValue) {
         val k = ev.toType[Int](input_data(i + input_offset)) - 1
-        val scale_ = if (null != count_data) ev.toType[Double](ev.fromType(scaleW)) /
-          ev.toType[Double](count_data(k)) else ev.toType[Double](ev.fromType(scaleW))
+        val scale_ = if (null != count_data) scaleW /
+          ev.toType[Double](count_data(k)) else scaleW
         ev.axpy(stride, ev.fromType(scale_), go, i*stride + _gradOutput.storageOffset() - 1, 1,
           gw, k*stride + gradWeight.storageOffset() - 1, 1)
       }

@@ -652,7 +652,7 @@ class SpatialFullConvolution[A <: Activity : ClassTag, T: ClassTag](
           gradBias_G,
           column_n.select(1, g + 1),
           outputHeight, outputWidth,
-          ev.fromType(scaleW))
+          ev.fromType[Double](scaleW))
         g += 1
       }
 

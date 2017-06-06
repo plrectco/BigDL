@@ -221,7 +221,7 @@ class PReLU[T: ClassTag](
         }
       }
       DenseTensorApply.apply2[T](input, gradOutput, func)
-      gradWeight.add(ev.times(ev.fromType(scaleW), sum))
+      gradWeight.add(ev.times(ev.fromType[Double](scaleW), sum))
     } else {
       require(input.nDimension() <= 4, s"${input.nDimension()}D input not supported")
       require(input.size((input.nDimension() + 1) % 2 + 1) == nOutputPlane,
@@ -261,7 +261,7 @@ class PReLU[T: ClassTag](
               k += 1
             }
             gradWeightArray(gradWeightOffset + j) = ev.plus(gradWeightArray(gradWeightOffset + j),
-              ev.times(ev.fromType(scaleW), sum))
+              ev.times(ev.fromType[Double](scaleW), sum))
             nInputOffset += ks
             nGradOutputOffset += ks
             j += 1

@@ -310,7 +310,7 @@ class VolumetricConvolution[T: ClassTag](
     }
     if (input.dim() == 4) {
       accGradParametersFrame(gradOutput, gradWeightMM, gradBias, fInput,
-        ev.fromType(scaleW), ev.fromType(scaleB))
+        ev.fromType[Double](scaleW), ev.fromType[Double](scaleB))
     } else {
       // batch mode
       var t = 1
@@ -318,7 +318,7 @@ class VolumetricConvolution[T: ClassTag](
         val gradOutputT = gradOutput.select(1, t)
         val fInputT = fInput.select(1, t)
         accGradParametersFrame(gradOutputT, gradWeightMM, gradBias, fInputT,
-          ev.fromType(scaleW), ev.fromType(scaleB))
+          ev.fromType[Double](scaleW), ev.fromType[Double](scaleB))
         t += 1
       }
     }

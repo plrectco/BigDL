@@ -145,7 +145,7 @@ class Cosine[T: ClassTag](val inputSize : Int, val outputSize : Int)(
       var weightNorm = Tensor[T]()
       weightNorm = _weightNorm.view(outputSize)
       _gradOutput.cdiv(weightNorm)
-      gradWeight.addr(ev.divide(ev.fromType(scaleW), __norm), _gradOutput, input)
+      gradWeight.addr(ev.divide(ev.fromType[Double](scaleW), __norm), _gradOutput, input)
 
       _gradOutput.cdiv(weightNorm)
       _gradOutput.cmul(output)

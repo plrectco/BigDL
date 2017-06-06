@@ -219,8 +219,8 @@ class SpatialShareConvolution[T: ClassTag](
           gradWeightMM.select(1, g + 1),
           gradBias.narrow(1, g * nOutputPlane / nGroup + 1, nOutputPlane / nGroup),
           fInput.select(1, g + 1),
-          ev.fromType(scaleW),
-          ev.fromType(scaleB))
+          ev.fromType[Double](scaleW),
+          ev.fromType[Double](scaleB))
         g += 1
       }
     } else {
@@ -275,8 +275,8 @@ class SpatialShareConvolution[T: ClassTag](
                 gradientBiasMT.select(1, _i + indexStart).narrow(1, g * nOutputPlane / nGroup + 1,
                   nOutputPlane / nGroup),
                 fInputT.select(1, g + 1),
-                ev.fromType(scaleW),
-                ev.fromType(scaleB))
+                ev.fromType[Double](scaleW),
+                ev.fromType[Double](scaleB))
               g += 1
             }
             _i += 1

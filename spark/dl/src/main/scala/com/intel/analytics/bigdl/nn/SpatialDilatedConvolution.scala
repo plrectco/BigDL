@@ -436,7 +436,7 @@ class SpatialDilatedConvolution[T: ClassTag](
       DenseTensorBLAS.gemm[T](
         't', 'n',
         n, m, k,
-        ev.fromType(scaleW),
+        ev.fromType[Double](scaleW),
         columns.storage().array(), columns.storageOffset() - 1, k,
         gradOutput_n.storage().array(), gradOutput_n.storageOffset() - 1, k,
         ev.fromType[Int](1),
@@ -453,7 +453,7 @@ class SpatialDilatedConvolution[T: ClassTag](
         ev.gemv(
           't',
           k, m,
-          ev.fromType(scaleB),
+          ev.fromType[Double](scaleB),
           gradOutput_n.storage().array(), gradOutput_n.storageOffset() - 1, k,
           ones.storage().array(), ones.storageOffset() - 1, 1,
           ev.fromType[Int](1),
