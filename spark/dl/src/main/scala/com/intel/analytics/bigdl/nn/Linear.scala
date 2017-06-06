@@ -130,8 +130,7 @@ class Linear[T: ClassTag](
     gradInput
   }
 
-  override def accGradParameters(input: Tensor[T], gradOutput: Tensor[T],
-    scale: Double = 1.0): Unit = {
+  override def accGradParameters(input: Tensor[T], gradOutput: Tensor[T]): Unit = {
     require(input.dim() == 1 || input.dim() == 2,
       "Linear: " + ErrorInfo.constrainInputAsVectorOrBatch)
 
@@ -140,16 +139,15 @@ class Linear[T: ClassTag](
       gradBias.resize(outputSize)
     }
 
-    val value = ev.fromType[Double](scale)
     if (input.dim() == 1) {
-      gradWeight.addr(value, gradOutput, input)
+      gradWeight.addr(ev.fromType(scaleW), gradOutput, input)
       if (withBias) {
-        gradBias.add(value, gradOutput)
+        gradBias.add(ev.fromType(scaleB), gradOutput)
       }
     }
     else if (input.dim() == 2) {
-      gradWeight.addmm(value, gradOutput.t, input)
-      if (withBias) gradBias.addmv(value, gradOutput.t, addBuffer)
+      gradWeight.addmm(ev.fromType(scaleW), gradOutput.t, input)
+      if (withBias) gradBias.addmv(ev.fromType(scaleB), gradOutput.t, addBuffer)
     }
 
     if (null != wRegularizer) {

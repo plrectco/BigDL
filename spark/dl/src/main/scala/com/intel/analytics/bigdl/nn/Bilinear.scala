@@ -156,7 +156,7 @@ class Bilinear[T: ClassTag](
     gradInput
   }
 
-  override def accGradParameters(input: Table, gradOutput: Tensor[T], scale: Double = 1.0): Unit = {
+  override def accGradParameters(input: Table, gradOutput: Tensor[T]): Unit = {
     val res1 = input[Tensor[T]](1)
     val res2 = input[Tensor[T]](2)
 
@@ -172,7 +172,7 @@ class Bilinear[T: ClassTag](
       gradWeight.select(1, k).addmm(buff1.t(), input(2))
       k += 1
     }
-    if(null != bias) gradBias.add(ev.fromType(scale), gradOutput.sum(1))
+    if(null != bias) gradBias.add(ev.fromType(scaleB), gradOutput.sum(1))
 
     if (wRegularizer != null) {
       wRegularizer.accRegularization(weight, gradWeight)

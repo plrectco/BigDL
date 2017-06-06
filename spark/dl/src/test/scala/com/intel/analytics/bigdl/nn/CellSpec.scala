@@ -36,8 +36,7 @@ private[bigdl] class CellUnit[T : ClassTag] (hidSize: Int)
     T()
   }
 
-  override def accGradParameters(input: Table, gradOutput: Table,
-                                 scale: Double = 1.0): Unit = {}
+  override def accGradParameters(input: Table, gradOutput: Table): Unit = {}
 
   override var cell: AbstractModule[Activity, Activity, T] = _
 }

@@ -182,8 +182,7 @@ class LookupTable[T: ClassTag]
     gradInput
   }
 
-  override def accGradParameters(input: Tensor[T], gradOutput: Tensor[T],
-    scale: Double = 1.0): Unit = {
+  override def accGradParameters(input: Tensor[T], gradOutput: Tensor[T]): Unit = {
     inputBuffer = input.contiguous()
     require(gradWeight.isContiguous(), "LookupTable: gradWeight must be contiguous")
     require(inputBuffer.dim() == 1 || inputBuffer.dim() == 2,
@@ -221,7 +220,8 @@ class LookupTable[T: ClassTag]
     while (i < numEle) {
       if (input_data(i + input_offset) != paddingValue) {
         val k = ev.toType[Int](input_data(i + input_offset)) - 1
-        val scale_ = if (null != count_data) scale / ev.toType[Double](count_data(k)) else scale
+        val scale_ = if (null != count_data) ev.toType[Double](ev.fromType(scaleW)) /
+          ev.toType[Double](count_data(k)) else ev.toType[Double](ev.fromType(scaleW))
         ev.axpy(stride, ev.fromType(scale_), go, i*stride + _gradOutput.storageOffset() - 1, 1,
           gw, k*stride + gradWeight.storageOffset() - 1, 1)
       }

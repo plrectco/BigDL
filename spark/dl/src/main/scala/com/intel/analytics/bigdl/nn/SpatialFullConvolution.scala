@@ -578,8 +578,7 @@ class SpatialFullConvolution[A <: Activity : ClassTag, T: ClassTag](
   }
 
 
-  override def accGradParameters(input: A, gradOutput: Tensor[T],
-                                 scale: Double = 1.0): Unit = {
+  override def accGradParameters(input: A, gradOutput: Tensor[T]): Unit = {
     val inputTensor: Tensor[T] = if (input.isInstanceOf[Table]) {
       val targetTensor: Tensor[T] = input.toTable[Tensor[T]](2)
       val tDims = targetTensor.dim()
@@ -653,7 +652,7 @@ class SpatialFullConvolution[A <: Activity : ClassTag, T: ClassTag](
           gradBias_G,
           column_n.select(1, g + 1),
           outputHeight, outputWidth,
-          ev.fromType[Double](scale))
+          ev.fromType(scaleW))
         g += 1
       }
 
