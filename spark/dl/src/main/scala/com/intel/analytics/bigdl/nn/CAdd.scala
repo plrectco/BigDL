@@ -99,10 +99,9 @@ class CAdd[@specialized(Float, Double) T: ClassTag](
     gradInput
   }
 
-  override def accGradParameters(input: Tensor[T], gradOutput: Tensor[T],
-    scale: Double = 1.0): Unit = {
+  override def accGradParameters(input: Tensor[T], gradOutput: Tensor[T]): Unit = {
     if (bias.nElement() == gradOutput.nElement()) {
-      gradBias.add(ev.fromType[Double](scale), gradOutput)
+      gradBias.add(ev.fromType[Double](scaleB), gradOutput)
     } else {
       val expand = if (bias.dim() == gradOutput.dim()) {
         gradBias.view(gradBias.size())
@@ -121,7 +120,7 @@ class CAdd[@specialized(Float, Double) T: ClassTag](
           k = 0
           while (k < expand.nElement()) {
             biasData(k) = ev.plus(ev.times(ev.sum(innerNum, gradOutputData, offset, 1),
-              ev.fromType[Double](scale)), biasData(k))
+              ev.fromType[Double](scaleB)), biasData(k))
             offset += innerNum
             k += 1
           }
@@ -129,7 +128,7 @@ class CAdd[@specialized(Float, Double) T: ClassTag](
         }
       } else {
         expand.expandAs(gradOutput)
-        expand.add(ev.fromType[Double](scale), gradOutput)
+        expand.add(ev.fromType[Double](scaleB), gradOutput)
       }
     }
   }
