@@ -60,5 +60,6 @@ class CellSpec extends FlatSpec with Matchers {
     hidden2(1).asInstanceOf[Tensor[Double]].size should be (Array(5, 4))
     hidden2(2).asInstanceOf[Tensor[Double]].size should be (Array(5, 4))
     hidden2(3).asInstanceOf[Tensor[Double]].size should be (Array(5, 4))
+
   }
 }

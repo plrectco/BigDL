@@ -155,6 +155,7 @@ class Cosine[T: ClassTag](val inputSize : Int, val outputSize : Int)(
 
       _weight.resizeAs(weight).copy(weight)
       _weight.cmul(_gradOutput.view(outputSize, 1).expandAs(weight))
+      _weight.mul(ev.fromType[Double](scaleW))
       gradWeight.add(ev.fromType(-1), _weight)
     } else if (input.dim() == 2) {
       _weight.resizeAs(weight).copy(weight)
