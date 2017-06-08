@@ -2111,7 +2111,7 @@ class Scale(Model):
                                     size)
 
 
-class SelectTable(Container):
+class SelectTable(Model):
 
     '''
     Creates a module that takes a table as input and outputs the element at index `index`
@@ -2753,26 +2753,6 @@ class ConcatTable(Container):
                  bigdl_type="float"):
         super(ConcatTable, self).__init__(None, bigdl_type)
 
-
-class CriterionTable(Model):
-    '''
-    Creates a module that wraps a Criterion so that it can accept a table of inputs.
-
-    :param criterion Criterion module
-
-    >>> from bigdl.nn.criterion import MSECriterion
-    >>> criterionTable = CriterionTable(MSECriterion())
-    creating: createMSECriterion
-    creating: createCriterionTable
-    '''
-
-    def __init__(self,
-                 criterion,
-                 bigdl_type="float"):
-        super(CriterionTable, self).__init__(None, bigdl_type,
-                                             criterion)
-
-
 class Identity(Model):
     '''
     Identity just return the input to output.
@@ -2982,6 +2962,56 @@ class SpatialSubtractiveNormalization(Model):
         super(SpatialSubtractiveNormalization, self).__init__(None, bigdl_type,
                                                               n_input_plane,
                                                               JTensor.from_ndarray(kernel))
+
+class Const(Model):
+    '''
+    Return a constant tensor defined by value when forward
+    '''
+
+    def __init__(self, value, bigdl_type="float"):
+        super(Const, self).__init__(None, bigdl_type, JTensor.from_ndarray(value))
+
+class Fill(Model):
+    '''
+    Return a constant tensor defined by value when forward
+    '''
+
+    def __init__(self, value, bigdl_type="float"):
+        super(Fill, self).__init__(None, bigdl_type, value)
+
+class Pack(Model):
+    '''
+    Stacks a list of n-dimensional tensors into one (n+1)-dimensional tensor.
+    '''
+
+    def __init__(self, dimension, bigdl_type="float"):
+        super(Pack, self).__init__(None, bigdl_type, dimension)
+
+class Shape(Model):
+    '''
+    Given input, return the shape of this input as a 1-D tensor
+    '''
+
+    def __init__(self, bigdl_type="float"):
+        super(Shape, self).__init__(None, bigdl_type)
+
+class SplitAndSelect(Model):
+    '''
+    First split the tensor along the [[dimension]] into [[numSplit]] sub tensors,
+    then select the [[index]]th one
+    '''
+
+    def __init__(self, dimension, index, num_split, bigdl_type="float"):
+        super(SplitAndSelect, self).__init__(None, bigdl_type, dimension, index, num_split)
+
+class StrideSlice(Model):
+    '''
+    Extracts a strided slice from a tensor.
+    '''
+
+    def __init__(self):
+        raise Exception('StrideSlice is not supported in python yet')
+
 
 
 def _test():
