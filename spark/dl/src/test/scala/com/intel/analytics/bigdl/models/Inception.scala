@@ -20,12 +20,14 @@ import java.util
 
 import com.intel.analytics.bigdl.nn._
 import com.intel.analytics.bigdl._
+import com.intel.analytics.bigdl.nn.Graph.ModuleNode
 import com.intel.analytics.bigdl.optim.SGD
 import com.intel.analytics.bigdl.tensor.TensorNumericMath.TensorNumeric
 import com.intel.analytics.bigdl.tensor.TensorNumericMath.TensorNumeric._
 import com.intel.analytics.bigdl.tensor._
 import com.intel.analytics.bigdl.utils.{T, Table}
 
+import scala.collection.mutable.ArrayBuffer
 import scala.reflect.ClassTag
 
 @com.intel.analytics.bigdl.tags.Parallel
@@ -187,6 +189,160 @@ object Inception {
         model
     }
   }
+
+  def getGraphModel[D: ClassTag](classNum: Int, modelName: String = "")(
+    implicit ev: TensorNumeric[D]): Module[D] = {
+    modelName match {
+      case "inception-bn" =>
+        def inception(inputSize: Int, config: Table, inputNode: ModuleNode[D])(
+          implicit ev: TensorNumeric[D]): ModuleNode[D] = {
+          val concatInput = new ArrayBuffer[ModuleNode[D]]
+          if (config[Table](1)[Int](1) != 0) {
+            val conv1 = SpatialConvolution[D](inputSize,
+              config[Table](1)(1), 1, 1, 1, 1).inputs(inputNode)
+            val sb1 = SpatialBatchNormalization(config[Table](1)(1), 1e-3).inputs(conv1)
+            val rl1 = ReLU[D](true).inputs(sb1)
+            concatInput += rl1
+          }
+
+          val conv3 = SpatialConvolution[D](inputSize,
+            config[Table](2)(1), 1, 1, 1, 1).inputs(inputNode)
+          val sb3 = SpatialBatchNormalization(config[Table](2)(1), 1e-3).inputs(conv3)
+          val rl3 = ReLU[D](true).inputs(sb3)
+          val conv3_1 = SpatialConvolution[D](config[Table](2)(1),
+            config[Table](2)(2), 3, 3, 1, 1, 1, 1).inputs(rl3)
+          val sb3_1 = SpatialBatchNormalization(config[Table](2)(2), 1e-3).inputs(conv3_1)
+          val rl3_1 = ReLU[D](true).inputs(sb3_1)
+          concatInput += rl3_1
+
+
+          val conv3xx = SpatialConvolution[D](inputSize,
+            config[Table](3)(1), 1, 1, 1, 1).inputs(inputNode)
+          val sb3xx = SpatialBatchNormalization(config[Table](3)(1), 1e-3).inputs(conv3xx)
+          val rl3xx = ReLU[D](true).inputs(sb3xx)
+          val conv3xx_1 = SpatialConvolution[D](config[Table](3)(1),
+            config[Table](3)(2), 3, 3, 1, 1, 1, 1).inputs(rl3xx)
+          val sb3xx_1 = SpatialBatchNormalization(config[Table](3)(2), 1e-3).inputs(conv3xx_1)
+          val rl3xx_1 = ReLU[D](true).inputs(sb3xx_1)
+          val conv3xx_2 = SpatialConvolution[D](config[Table](3)(2),
+            config[Table](3)(2), 3, 3, 1, 1, 1, 1).inputs(rl3xx_1)
+          val sb3xx_2 = SpatialBatchNormalization(config[Table](3)(2), 1e-3).inputs(conv3xx_2)
+          val rl3xx_2 = ReLU[D](true).inputs(sb3xx_2)
+          concatInput += rl3xx_2
+
+
+          val padding = SpatialZeroPadding[D](1, 1, 1, 1).inputs(inputNode)
+          var pool: ModuleNode[D] = null
+          config[Table](4)[String](1) match {
+            case "max" => pool = SpatialMaxPooling[D](3, 3, 1, 1).ceil().inputs(padding)
+            case "avg" => pool = SpatialAveragePooling[D](3, 3, 1, 1).ceil().inputs(padding)
+            case _ => throw new IllegalArgumentException
+          }
+
+          if (config[Table](4)[Int](2) != 0) {
+            val conv4 = SpatialConvolution[D](inputSize,
+              config[Table](4)[Int](2), 1, 1, 1, 1).inputs(pool)
+            val sb4 = SpatialBatchNormalization(config[Table](4)(2), 1e-3).inputs(conv4)
+            val rl4 = ReLU[D](true).inputs(sb4)
+            concatInput += rl4
+          } else {
+            concatInput += pool
+          }
+          JoinTable[D](2, -1).inputs(concatInput: _*)
+        }
+
+        // feature
+        val fconv1 = SpatialConvolution[D](3, 64, 7, 7, 2, 2, 3, 3).inputs()
+        val fsb1 = SpatialBatchNormalization(64, 1e-3).inputs(fconv1)
+        val frl1 = ReLU[D](true).inputs(fsb1)
+        val smp = SpatialMaxPooling[D](3, 3, 2, 2).ceil().inputs(frl1)
+        val fconv2 = SpatialConvolution[D](64, 64, 1, 1).inputs(smp)
+        val frl2 = ReLU[D](true).inputs(fconv2)
+        val fconv3 = SpatialConvolution[D](64, 192, 3, 3, 1, 1, 1, 1).inputs(frl2)
+        val fsb3 = SpatialBatchNormalization(192, 1e-3).inputs(fconv3)
+        val frl3 = ReLU[D](true).inputs(fsb3)
+        val smp2 = SpatialMaxPooling[D](3, 3, 2, 2).ceil().inputs(frl3)
+        val i1 = inception(192, T(T(64), T(64, 64), T(64, 96), T("avg", 32)), smp2)
+        val i2 = inception(256, T(T(64), T(64, 96), T(64, 96), T("avg", 64)), i1)
+        val i3 = inception(320, T(T(0), T(128, 160), T(64, 96), T("max", 0)), i2)
+        val conv5 = SpatialConvolution[D](576, 576, 2, 2, 2, 2).inputs(i3)
+        val i4 = inception(576, T(T(224), T(64, 96), T(96, 128), T("avg", 128)), conv5)
+        val i5 = inception(576, T(T(192), T(96, 128), T(96, 128), T("avg", 128)), i4)
+        val i6 = inception(576, T(T(160), T(128, 160), T(128, 160), T("avg", 96)), i5)
+        val i7 = inception(576, T(T(96), T(128, 192), T(160, 192), T("avg", 96)), i6)
+
+        // Mainbranch
+        val i8 = inception(576, T(T(0), T(128, 192), T(192, 256), T("max", 0)), i7)
+        val mconv6 = SpatialConvolution[D](1024, 1024, 2, 2, 2, 2).inputs(i8)
+        val msb = SpatialBatchNormalization(1024, 1e-3).inputs(mconv6)
+        val i9 = inception(1024, T(T(352), T(192, 320), T(160, 224), T("avg", 128)), msb)
+        val i10 = inception(1024, T(T(352), T(192, 320), T(192, 224), T("max", 128)), i9)
+        val msap = SpatialAveragePooling[D](7, 7, 1, 1).inputs(i10)
+        val mview = View[D](1024).setNumInputDims(3).inputs(msap)
+        val mlinear = Linear[D](1024, classNum).inputs(mview)
+        val mls = LogSoftMax[D].inputs(mlinear)
+
+        // AuxClassifier
+        val asap = SpatialAveragePooling[D](5, 5, 3, 3).ceil().inputs(i7)
+        val aconv = SpatialConvolution[D](576, 128, 1, 1, 1, 1).inputs(asap)
+        val asb = SpatialBatchNormalization(128, 1e-3).inputs(aconv)
+        val aview = View[D](128 * 4 * 4).setNumInputDims(3).inputs(asb)
+        val alinear = Linear[D](128 * 4 * 4, 768).inputs(aview)
+        val arelu = ReLU[D](true).inputs(alinear)
+        val alinear2 = Linear[D](768, classNum).inputs(arelu)
+        val als = LogSoftMax[D].inputs(alinear2)
+
+        val endNode = JoinTable(2, -1).inputs(mls, als)
+
+        val model = Graph(fconv1, endNode)
+
+        model
+      case default =>
+
+        // features
+        val fconv1 = SpatialConvolution[D](3, 64, 7, 7, 2, 2, 3, 3).inputs()
+        val frl1 = ReLU[D](true).inputs(fconv1)
+        val fsmp = SpatialMaxPooling[D](3, 3, 2, 2).ceil().inputs(frl1)
+        val fconv2 = SpatialConvolution[D](64, 64, 1, 1).inputs(fsmp)
+        val frl2 = ReLU[D](true).inputs(fconv2)
+        val fconv3 = SpatialConvolution[D](64, 192, 3, 3, 1, 1, 1, 1).inputs(frl2)
+        val frl3 = ReLU[D](true).inputs(fconv3)
+        val fsmp2 = SpatialMaxPooling[D](3, 3, 2, 2).ceil().inputs(frl3)
+        val i1 = inception(192, T(T(64), T(64, 64), T(64, 96), T("avg", 32))).inputs(fsmp2)
+        val i2 = inception(256, T(T(64), T(64, 96), T(64, 96), T("avg", 64))).inputs(i1)
+        val i3 = inception(320, T(T(0), T(128, 160), T(64, 96), T("max", 0))).inputs(i2)
+        val fconv4 = SpatialConvolution[D](576, 576, 2, 2, 2, 2).inputs(i3)
+        val i4 = inception(576, T(T(224), T(64, 96), T(96, 128), T("avg", 128))).inputs(fconv4)
+        val i5 = inception(576, T(T(192), T(96, 128), T(96, 128), T("avg", 128))).inputs(i4)
+        val i6 = inception(576, T(T(160), T(128, 160), T(128, 160), T("avg", 96))).inputs(i5)
+        val i7 = inception(576, T(T(96), T(128, 192), T(160, 192), T("avg", 96))).inputs(i6)
+
+        // mainBranch
+        val mi8 = inception(576, T(T(0), T(128, 192), T(192, 256), T("max", 0))).inputs(i7)
+        val mconv1 = SpatialConvolution[D](1024, 1024, 2, 2, 2, 2).inputs(mi8)
+        val mi9 = inception(1024, T(T(352), T(192, 320), T(160, 224), T("avg", 128))).inputs(mconv1)
+        val mi10 = inception(1024, T(T(352), T(192, 320), T(192, 224), T("max", 128))).inputs(mi9)
+        val msap = SpatialAveragePooling[D](7, 7, 1, 1).inputs(mi10)
+        val mview = View[D](1024).setNumInputDims(3).inputs(msap)
+        val mlinear = Linear[D](1024, classNum).inputs(mview)
+        val mls = LogSoftMax[D].inputs(mlinear)
+
+        // auxClassifier
+        val asap = SpatialAveragePooling[D](5, 5, 3, 3).ceil().inputs(i7)
+        val aconv1 = SpatialConvolution[D](576, 128, 1, 1, 1, 1).inputs(asap)
+        val aview = View[D](128 * 4 * 4).setNumInputDims(3).inputs(aconv1)
+        val alinear = Linear[D](128 * 4 * 4, 768).inputs(aview)
+        val arl = ReLU[D](true).inputs(alinear)
+        val alinear2 = Linear[D](768, classNum).inputs(arl)
+        val als = LogSoftMax[D].inputs(alinear2)
+
+        val endNode = JoinTable(2, -1).inputs(mls, als)
+        val model = Graph(fconv1, endNode)
+
+        model
+    }
+  }
+
 
   def inception[D: ClassTag](inputSize: Int, config: Table)(
     implicit ev: TensorNumeric[D]): Module[D] = {

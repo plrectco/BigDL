@@ -175,47 +175,48 @@ class SpatialConvolution[T: ClassTag](
     } else {
       require(input.size(2) == nInputPlane)
       val batchSize = input.size(1)
-      output.resize(Array(batchSize, nOutputPlane, outputHeight, outputWidth))
-      if (_1x1) {
-        fInput.set(input)
-        fInput.resize(Array(batchSize, nGroup, kernelW * kernelH * nInputPlane / nGroup,
-          outputHeight * outputWidth))
-      } else {
-        fInput.resize(Array(batchSize, nGroup, kernelW * kernelH * nInputPlane / nGroup,
-          outputHeight * outputWidth))
-      }
+        output.resize(Array(batchSize, nOutputPlane, outputHeight, outputWidth))
+        if (_1x1) {
+          fInput.set(input)
+          fInput.resize(Array(batchSize, nGroup, kernelW * kernelH * nInputPlane / nGroup,
+            outputHeight * outputWidth))
+        } else {
+          fInput.resize(Array(batchSize, nGroup, kernelW * kernelH * nInputPlane / nGroup,
+            outputHeight * outputWidth))
+        }
 
-      if (results == null || results.length != batchSize) {
-        results = new Array[Future[Unit]](batchSize)
-      }
+        if (results == null || results.length != batchSize) {
+          results = new Array[Future[Unit]](batchSize)
+        }
 
-      var i = 0
-      while (i < batchSize) {
-        val _i = i + 1
-        results(i) = Engine.model.invoke(() => {
-          val inputT = input.select(1, _i)
-          require(inputT.isContiguous())
-          val outputT = output.select(1, _i)
-          val fInputT = fInput.select(1, _i)
-          var g = 0
-          while (g < nGroup) {
-            updateOutputFrame(
-              inputT.narrow(1, g * nInputPlane / nGroup + 1, nInputPlane / nGroup),
-              outputT.narrow(1, g * nOutputPlane / nGroup + 1, nOutputPlane / nGroup),
-              weightMM.select(1, g + 1),
-              bias.narrow(1, g * nOutputPlane / nGroup + 1, nOutputPlane / nGroup),
-              fInputT.select(1, g + 1),
-              kernelW, kernelH, strideW, strideH,
-              padW, padH,
-              nInputPlane / nGroup, inputWidth, inputHeight,
-              nOutputPlane / nGroup, outputWidth, outputHeight)
-            g += 1
-          }
-        })
-        i += 1
-      }
-      Engine.model.sync(results)
+        var i = 0
+        while (i < batchSize) {
+          val _i = i + 1
+          results(i) = Engine.model.invoke(() => {
+            val inputT = input.select(1, _i)
+            require(inputT.isContiguous())
+            val outputT = output.select(1, _i)
+            val fInputT = fInput.select(1, _i)
+            var g = 0
+            while (g < nGroup) {
+              updateOutputFrame(
+                inputT.narrow(1, g * nInputPlane / nGroup + 1, nInputPlane / nGroup),
+                outputT.narrow(1, g * nOutputPlane / nGroup + 1, nOutputPlane / nGroup),
+                weightMM.select(1, g + 1),
+                bias.narrow(1, g * nOutputPlane / nGroup + 1, nOutputPlane / nGroup),
+                fInputT.select(1, g + 1),
+                kernelW, kernelH, strideW, strideH,
+                padW, padH,
+                nInputPlane / nGroup, inputWidth, inputHeight,
+                nOutputPlane / nGroup, outputWidth, outputHeight)
+              g += 1
+            }
+          })
+          i += 1
+        }
+        Engine.model.sync(results)
     }
+
     output
   }
 

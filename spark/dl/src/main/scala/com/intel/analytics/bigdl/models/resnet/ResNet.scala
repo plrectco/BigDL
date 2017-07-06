@@ -17,6 +17,7 @@
 package com.intel.analytics.bigdl.models.resnet
 
 import com.intel.analytics.bigdl.Module
+import com.intel.analytics.bigdl.nn.Graph.ModuleNode
 import com.intel.analytics.bigdl.nn.abstractnn.Activity
 import com.intel.analytics.bigdl.nn._
 import com.intel.analytics.bigdl.numeric.NumericFloat
@@ -129,6 +130,139 @@ object ResNet {
   }
 
   var iChannels = 0
+
+
+  def graphModel(classNum: Int, opt: Table): Module[Float] = {
+    val depth = opt.get("depth").getOrElse(18)
+    val shortCutType = opt.get("shortcutType")
+    val shortcutType = shortCutType.getOrElse(ShortcutType.B).asInstanceOf[ShortcutType]
+    val dataSet = opt.get("dataset")
+    val dataset = dataSet.getOrElse(DatasetType.CIFAR10).asInstanceOf[DatasetType]
+    val optnet = opt.get("optnet").getOrElse(true)
+
+    def shortcut(nInputPlane: Int, nOutputPlane: Int,
+                 stride: Int, inputNode: ModuleNode[Float]): ModuleNode[Float] = {
+      val useConv = shortcutType == ShortcutType.C ||
+        (shortcutType == ShortcutType.B && nInputPlane != nOutputPlane)
+
+      if (useConv) {
+        val conv = Convolution(nInputPlane, nOutputPlane, 1, 1,
+          stride, stride, optnet = optnet).inputs(inputNode)
+        SpatialBatchNormalization(nOutputPlane).inputs(conv)
+      } else if (nInputPlane != nOutputPlane) {
+        val layer1 = SpatialAveragePooling(1, 1, stride, stride).inputs(inputNode)
+        val c1 = Identity().inputs(layer1)
+        val c2 = MulConstant(0f).inputs(layer1)
+        JoinTable(2, -1).inputs(c1, c2)
+      } else {
+        Identity().inputs(inputNode)
+      }
+    }
+
+    def basicBlock(n: Int, stride: Int, inputNode: ModuleNode[Float]): ModuleNode[Float] = {
+      val nInputPlane = iChannels
+      iChannels = n
+      val conv = Convolution(nInputPlane, n, 3, 3,
+        stride, stride, 1, 1, optnet = optnet).inputs(inputNode)
+      val sb = SpatialBatchNormalization(n).inputs(conv)
+      val rl = ReLU(true).inputs(sb)
+      val conv2 = Convolution(n, n, 3, 3, 1, 1, 1, 1, optnet = optnet).inputs(rl)
+      val sb2 = SpatialBatchNormalization(n).inputs(conv2)
+
+      val sc = shortcut(nInputPlane, n, stride, inputNode)
+
+      val cadd = CAddTable(true).inputs(sb2, sc)
+      val rl2 = ReLU(true).inputs(cadd)
+      rl2
+    }
+
+    def bottleneck(n: Int, stride: Int, inputNode: ModuleNode[Float]): ModuleNode[Float] = {
+      val nInputPlane = iChannels
+      iChannels = n * 4
+      val conv1 = Convolution(nInputPlane, n,
+        1, 1, 1, 1, 0, 0, optnet = optnet).inputs(inputNode)
+      val sb1 = SpatialBatchNormalization(n).inputs(conv1)
+      val rl1 = ReLU(true).inputs(sb1)
+      val sb2 = SpatialBatchNormalization(n).inputs(rl1)
+      val rl2 = ReLU(true).inputs(sb2)
+      val conv2 = Convolution(n, n*4, 1, 1, 1, 1, 0, 0, optnet = optnet).inputs(rl2)
+      val sb3 = SpatialBatchNormalization(n * 4).inputs(conv2)
+
+      val sc = shortcut(nInputPlane, n*4, stride, inputNode)
+
+      val cadd = CAddTable(true).inputs(sb3, sc)
+      val rl3 = ReLU(true).inputs(cadd)
+      rl3
+    }
+
+    def layer(block: (Int, Int, ModuleNode[Float]) => ModuleNode[Float], features: Int,
+              count: Int, stride: Int, inputNode: ModuleNode[Float]): ModuleNode[Float] = {
+      var currentNode = inputNode
+      for (i <- 1 to count) {
+        currentNode = block(features, if (i == 1) stride else 1, currentNode)
+      }
+      currentNode
+    }
+    var endNode: ModuleNode[Float] = null
+    var startNode: ModuleNode[Float] = null
+    if (dataset == DatasetType.ImageNet) {
+      val cfg = Map(
+        18 -> ((2, 2, 2, 2), 512,
+          basicBlock: (Int, Int, ModuleNode[Float]) => ModuleNode[Float]),
+        34 -> ((3, 4, 6, 3), 512,
+          basicBlock: (Int, Int, ModuleNode[Float]) => ModuleNode[Float]),
+        50 -> ((3, 4, 6, 3), 2048,
+          bottleneck: (Int, Int, ModuleNode[Float]) => ModuleNode[Float]),
+        101 -> ((3, 4, 23, 3), 2048,
+          bottleneck: (Int, Int, ModuleNode[Float]) => ModuleNode[Float]),
+        152 -> ((3, 8, 36, 3), 2048,
+          bottleneck: (Int, Int, ModuleNode[Float]) => ModuleNode[Float]),
+        200 -> ((3, 24, 36, 3), 2048,
+          bottleneck: (Int, Int, ModuleNode[Float]) => ModuleNode[Float])
+      )
+
+      require(cfg.keySet.contains(depth), s"Invalid depth ${depth}")
+
+      val (loopConfig, nFeatures, block) = cfg.get(depth).get
+      iChannels = 64
+      logger.info(" | ResNet-" + depth + " ImageNet")
+      val conv1 = Convolution(3, 64, 7, 7, 2, 2, 3, 3, optnet = optnet).inputs()
+      val sb1 = SpatialBatchNormalization(64).inputs(conv1)
+      val rl1 = ReLU(true).inputs(sb1)
+      val smp1 = SpatialMaxPooling(3, 3, 2, 2, 1, 1).inputs(rl1)
+      val l1 = layer(block, 64, loopConfig._1, 1, smp1)
+      val l2 = layer(block, 128, loopConfig._2, 2, l1)
+      val l3 = layer(block, 256, loopConfig._3, 2, l2 )
+      val l4 = layer(block, 512, loopConfig._4, 2, l3)
+      val sap = SpatialAveragePooling(7, 7, 1, 1).inputs(l4)
+      val view = View(nFeatures).setNumInputDims(3).inputs(sap)
+      val linear = Linear(nFeatures, classNum).inputs(view)
+      endNode = linear
+      startNode = conv1
+    } else if (dataset == DatasetType.CIFAR10) {
+      require((depth - 2)%6 == 0,
+        "depth should be one of 20, 32, 44, 56, 110, 1202")
+      val n = (depth-2)/6
+      iChannels = 16
+      logger.info(" | ResNet-" + depth + " CIFAR-10")
+      val conv1 = Convolution(3, 16, 3, 3, 1, 1, 1, 1, optnet = optnet).inputs()
+      val sb1 = SpatialBatchNormalization(16).inputs(conv1)
+      val rl1 = ReLU(true).inputs(sb1)
+      val l1 = layer(basicBlock, 16, n, 1, rl1)
+      val l2 = layer(basicBlock, 32, n, 2, l1)
+      val l3 = layer(basicBlock, 64, n, 2, l2)
+      val sap = SpatialAveragePooling(8, 8, 1, 1).inputs(l3)
+      val view = View(64).setNumInputDims(3).inputs(sap)
+      val linear = Linear(64, 10).inputs(view)
+      endNode = linear
+      startNode = conv1
+    } else {
+      throw new IllegalArgumentException(s"Invalid dataset ${dataset}")
+    }
+    Graph(startNode, endNode)
+
+  }
+
   def apply(classNum: Int, opt: Table): Module[Float] = {
 
     val depth = opt.get("depth").getOrElse(18)

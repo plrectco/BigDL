@@ -54,7 +54,7 @@ class ResNetSpec extends TorchSpec {
 
     val seed = modelSeed
     RNG.setSeed(seed)
-    val model = ResNet(classNum, T("shortcutType" -> ShortcutType.B,
+    val model = ResNet.graphModel(classNum, T("shortcutType" -> ShortcutType.B,
       "depth" -> depth, "dataset" -> DatasetType.ImageNet))
     model.zeroGradParameters()
 
